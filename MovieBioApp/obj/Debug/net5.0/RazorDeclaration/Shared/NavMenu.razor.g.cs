@@ -90,7 +90,7 @@ using MovieBioApp.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 28 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\Shared\NavMenu.razor"
+#line 69 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\Shared\NavMenu.razor"
        
     private bool collapseNavMenu = true;
 

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tSblwyU/1I5OM489LQ9MmrsmFb7EKwTqpQI8zSlvGo6tA4+Ol0+KybPg10cMH9LA8jTQ4R89avaJ59HbvYnLNQ==",
+  "dgSpecHash": "iGCCkckPSXHq4xGdLyyuJQ+sWLLVxdgDDpw/EJ3oQico/AKT/MY2BJm2BljGKdEazxXz65pH0a+GaJkU5qD6iw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\MovieBioApp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Kevin\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.17\\microsoft.netcore.app.host.win-x64.5.0.17.nupkg.sha512"
+  ],
   "logs": []
 }

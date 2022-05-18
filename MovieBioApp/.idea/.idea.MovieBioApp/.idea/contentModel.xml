@@ -28,11 +28,18 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="Pages" t="Include">
         <e p="_Host.cshtml" t="Include" />
-        <e p="Counter.razor" t="Include" />
+        <e p="Actors.razor" t="Include" />
+        <e p="DirectorPage.razor" t="Include" />
         <e p="Error.cshtml" t="Include" />
         <e p="Error.cshtml.cs" t="Include" />
+        <e p="FavoriteMovies.razor" t="Include" />
         <e p="FetchData.razor" t="Include" />
         <e p="Index.razor" t="Include" />
+        <e p="LogIn.razor" t="Include" />
+        <e p="MoviePage.razor" t="Include" />
+        <e p="Movies.razor" t="Include" />
+        <e p="SignUp.razor" t="Include" />
+        <e p="UserProfile.razor" t="Include" />
       </e>
       <e p="Program.cs" t="Include" />
       <e p="Properties" t="Include">
