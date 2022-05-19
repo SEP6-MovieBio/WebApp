@@ -22,21 +22,63 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="Pages Created">
-      <change afterPath="$PROJECT_DIR$/Pages/AboutUs.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/Top200Actors.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/Top200Directors.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/Top200Movies.razor" afterDir="false" />
+    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="Added more pages">
+      <change afterPath="$PROJECT_DIR$/Shared/FooterBar.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/Icons/HumanIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/Icons/MenuIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/Icons/MovieIcon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wwwroot/Icons/PlusIcon.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/UserProfile.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/UserProfile.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/_Host.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/MainLayout.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/MainLayout.razor.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Shared/NavMenu.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/NavMenu.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.RazorComponent.input.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.RazorComponent.input.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.RazorCoreGenerate.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.RazorCoreGenerate.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.TagHelpers.output.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.TagHelpers.output.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/NavMenu.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/NavMenu.razor.rz.scp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/bundle/MovieBioApp.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/bundle/MovieBioApp.styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/projectbundle/MovieBioApp.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/projectbundle/MovieBioApp.bundle.scp.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -57,7 +99,19 @@
         <option value="$PROJECT_DIR$/Pages/Top200Actors.razor" />
         <option value="$PROJECT_DIR$/Pages/Top200Directors.razor" />
         <option value="$PROJECT_DIR$/Pages/AboutUs.razor" />
+        <option value="$PROJECT_DIR$/Pages/_Host.cshtml" />
+        <option value="$PROJECT_DIR$/Pages/UserProfile.razor" />
+        <option value="$PROJECT_DIR$/Shared/MainLayout.razor.css" />
+        <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
+        <option value="$PROJECT_DIR$/Pages/Index.razor" />
+        <option value="$PROJECT_DIR$/Shared/Footer.css" />
+        <option value="$PROJECT_DIR$/Shared/Footer.razor" />
+        <option value="$PROJECT_DIR$/Shared/MainLayout.razor" />
+        <option value="$PROJECT_DIR$/Shared/FooterBar.css" />
+        <option value="$PROJECT_DIR$/wwwroot/css/site.css" />
+        <option value="$PROJECT_DIR$/Shared/FooterBar.razor" />
         <option value="$PROJECT_DIR$/Shared/NavMenu.razor" />
+        <option value="$PROJECT_DIR$/Shared/NavMenu.razor.css" />
       </list>
     </option>
   </component>
@@ -70,6 +124,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MovieBioApp">
     <configuration name="MovieBioApp" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
@@ -113,7 +168,7 @@
       <updated>1651662647938</updated>
       <workItem from="1651662656883" duration="3499000" />
       <workItem from="1652912800620" duration="827000" />
-      <workItem from="1652955879135" duration="142000" />
+      <workItem from="1652955879135" duration="17748000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Setup">
       <created>1651662860783</created>
@@ -129,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652913312695</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added more pages">
+      <created>1652956032657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1652956032657</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
@@ -150,33 +212,38 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Inital Setup" />
     <MESSAGE value="Pages Created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pages Created" />
+    <MESSAGE value="Added more pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more pages" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom" timestamp="1652913647268">
+    <state x="612" y="316" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1652969880200">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
-    <state width="1663" height="277" key="GridCell.Tab.0.center" timestamp="1652913647268">
+    <state x="612" y="316" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1652969880200" />
+    <state width="1663" height="277" key="GridCell.Tab.0.bottom" timestamp="1652983878228">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
-    <state width="1663" height="277" key="GridCell.Tab.0.left" timestamp="1652913647268">
+    <state width="1663" height="277" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1652983878228" />
+    <state width="1663" height="277" key="GridCell.Tab.0.center" timestamp="1652983878227">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
-    <state width="1663" height="277" key="GridCell.Tab.0.right" timestamp="1652913647268">
+    <state width="1663" height="277" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1652983878227" />
+    <state width="1663" height="277" key="GridCell.Tab.0.left" timestamp="1652983878227">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
-    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size" timestamp="1651665826140">
+    <state width="1663" height="277" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1652983878227" />
+    <state width="1663" height="277" key="GridCell.Tab.0.right" timestamp="1652983878228">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size/0.0.1707.1027@0.0.1707.1027" timestamp="1651665826140" />
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2" timestamp="1652913343739">
+    <state width="1663" height="277" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1652983878228" />
+    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size" timestamp="1652971419293">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1652913343739" />
+    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size/0.0.1707.1027@0.0.1707.1027" timestamp="1652971419293" />
+    <state x="446" y="247" key="Vcs.Push.Dialog.v2" timestamp="1652956038905">
+      <screen x="0" y="0" width="1707" height="1027" />
+    </state>
+    <state x="446" y="247" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1652956038905" />
     <state x="671" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1652912808277">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>

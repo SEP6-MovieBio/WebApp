@@ -11,9 +11,6 @@
     flex: 1;
 }
 
-.sidebar[b-xmchgr6ddy] {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
-}
 
 .top-row[b-xmchgr6ddy] {
     background-color: #f7f7f7;
@@ -52,13 +49,7 @@
     .page[b-xmchgr6ddy] {
         flex-direction: row;
     }
-
-    .sidebar[b-xmchgr6ddy] {
-        width: 250px;
-        height: 100vh;
-        position: sticky;
-        top: 0;
-    }
+    
 
     .top-row[b-xmchgr6ddy] {
         position: sticky;
@@ -85,25 +76,52 @@
     font-size: 1.1rem;
 }
 
-.oi[b-rc2sv3ynay] {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
+.profileButton[b-rc2sv3ynay] {
+    border: none;
+}
+
+.navSearchItem[b-rc2sv3ynay]{
+    margin-left: 10rem;
+}
+
+form[b-rc2sv3ynay]{
+    width: 25rem;
+    padding-right: 2rem;
+    position: relative;
+}
+
+input#query[b-rc2sv3ynay]{
+    width: 100%;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+button[b-rc2sv3ynay]{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    right: 0;
+    position: absolute;
+}
+
+.backGroundColorNavBar[b-rc2sv3ynay]{
+    background-color: #262324;
+}
+
+.searchBar[b-rc2sv3ynay]{
+    align-items: center;
+}
+.WhiteText[b-rc2sv3ynay]{
+    color: white !important;
+}
+
+.menuIcon[b-rc2sv3ynay]{
+    margin-left: 0.5rem;
 }
 
 .nav-item[b-rc2sv3ynay] {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    
 }
-
-    .nav-item:first-of-type[b-rc2sv3ynay] {
-        padding-top: 1rem;
-    }
-
-    .nav-item:last-of-type[b-rc2sv3ynay] {
-        padding-bottom: 1rem;
-    }
 
     .nav-item[b-rc2sv3ynay]  a {
         color: #d7d7d7;

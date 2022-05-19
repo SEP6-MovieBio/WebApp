@@ -70,3 +70,13 @@ C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\R
 C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\SignUp.razor.g.cs
 C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\UserProfile.razor.g.cs
 C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\refint\MovieBioApp.dll
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\RazorDeclaration\Pages\AboutUs.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\RazorDeclaration\Pages\Top200Actors.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\RazorDeclaration\Pages\Top200Directors.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\RazorDeclaration\Pages\Top200Movies.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\AboutUs.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\Top200Actors.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\Top200Directors.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Pages\Top200Movies.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\RazorDeclaration\Shared\FooterBar.razor.g.cs
+C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\obj\Debug\net5.0\Razor\Shared\FooterBar.razor.g.cs

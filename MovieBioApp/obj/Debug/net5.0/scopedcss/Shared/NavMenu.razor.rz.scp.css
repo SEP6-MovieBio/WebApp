@@ -11,25 +11,52 @@
     font-size: 1.1rem;
 }
 
-.oi[b-rc2sv3ynay] {
-    width: 2rem;
-    font-size: 1.1rem;
-    vertical-align: text-top;
-    top: -2px;
+.profileButton[b-rc2sv3ynay] {
+    border: none;
+}
+
+.navSearchItem[b-rc2sv3ynay]{
+    margin-left: 10rem;
+}
+
+form[b-rc2sv3ynay]{
+    width: 25rem;
+    padding-right: 2rem;
+    position: relative;
+}
+
+input#query[b-rc2sv3ynay]{
+    width: 100%;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+button[b-rc2sv3ynay]{
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    right: 0;
+    position: absolute;
+}
+
+.backGroundColorNavBar[b-rc2sv3ynay]{
+    background-color: #262324;
+}
+
+.searchBar[b-rc2sv3ynay]{
+    align-items: center;
+}
+.WhiteText[b-rc2sv3ynay]{
+    color: white !important;
+}
+
+.menuIcon[b-rc2sv3ynay]{
+    margin-left: 0.5rem;
 }
 
 .nav-item[b-rc2sv3ynay] {
     font-size: 0.9rem;
-    padding-bottom: 0.5rem;
+    
 }
-
-    .nav-item:first-of-type[b-rc2sv3ynay] {
-        padding-top: 1rem;
-    }
-
-    .nav-item:last-of-type[b-rc2sv3ynay] {
-        padding-bottom: 1rem;
-    }
 
     .nav-item[b-rc2sv3ynay]  a {
         color: #d7d7d7;

@@ -90,16 +90,20 @@ using MovieBioApp.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 69 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\Shared\NavMenu.razor"
+#line 50 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\Shared\NavMenu.razor"
        
-    private bool collapseNavMenu = true;
+    bool collapseNavMenu = true;
 
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    string baseMenuClass = "navbar-collapse d-sm-inline-flex flex-sm-row-reverse";
 
-    private void ToggleNavMenu()
+    string NavMenuCssClass => baseMenuClass + (collapseNavMenu ? " collapse" : "");
+
+    void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+   
 
 
 #line default
