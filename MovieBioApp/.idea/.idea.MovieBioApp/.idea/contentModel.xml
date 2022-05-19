@@ -50,6 +50,7 @@
         <e p="launchSettings.json" t="Include" />
       </e>
       <e p="Shared" t="Include">
+        <e p="FooterBar.razor" t="Include" />
         <e p="MainLayout.razor" t="Include" />
         <e p="MainLayout.razor.css" t="Include" />
         <e p="NavMenu.razor" t="Include" />
@@ -83,6 +84,12 @@
           <e p="site.css" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
+        <e p="Icons" t="Include">
+          <e p="HumanIcon.png" t="Include" />
+          <e p="MenuIcon.png" t="Include" />
+          <e p="MovieIcon.png" t="Include" />
+          <e p="PlusIcon.png" t="Include" />
+        </e>
       </e>
     </e>
   </component>
