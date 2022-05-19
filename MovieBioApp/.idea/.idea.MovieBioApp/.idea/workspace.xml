@@ -22,27 +22,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="Inital Setup">
-      <change afterPath="$PROJECT_DIR$/Pages/Actors.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/DirectorPage.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/FavoriteMovies.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/LogIn.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/MoviePage.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/Movies.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/SignUp.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Pages/UserProfile.razor" afterDir="false" />
+    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="Pages Created">
+      <change afterPath="$PROJECT_DIR$/Pages/AboutUs.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pages/Top200Actors.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pages/Top200Directors.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pages/Top200Movies.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Counter.razor" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.targets" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +53,10 @@
         <option value="$PROJECT_DIR$/Pages/MoviePage.razor" />
         <option value="$PROJECT_DIR$/Pages/FavoriteMovies.razor" />
         <option value="$PROJECT_DIR$/Pages/DirectorPage.razor" />
+        <option value="$PROJECT_DIR$/Pages/Top200Movies.razor" />
+        <option value="$PROJECT_DIR$/Pages/Top200Actors.razor" />
+        <option value="$PROJECT_DIR$/Pages/Top200Directors.razor" />
+        <option value="$PROJECT_DIR$/Pages/AboutUs.razor" />
         <option value="$PROJECT_DIR$/Shared/NavMenu.razor" />
       </list>
     </option>
@@ -121,7 +112,8 @@
       <option name="presentableId" value="Default" />
       <updated>1651662647938</updated>
       <workItem from="1651662656883" duration="3499000" />
-      <workItem from="1652912800620" duration="458000" />
+      <workItem from="1652912800620" duration="827000" />
+      <workItem from="1652955879135" duration="142000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Setup">
       <created>1651662860783</created>
@@ -130,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1651662860783</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Pages Created">
+      <created>1652913312695</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1652913312695</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
@@ -150,33 +149,34 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="Inital Setup" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inital Setup" />
+    <MESSAGE value="Pages Created" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pages Created" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom" timestamp="1652628989298">
+    <state width="1663" height="277" key="GridCell.Tab.0.bottom" timestamp="1652913647268">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1652628989298" />
-    <state width="1663" height="277" key="GridCell.Tab.0.center" timestamp="1652628989298">
+    <state width="1663" height="277" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
+    <state width="1663" height="277" key="GridCell.Tab.0.center" timestamp="1652913647268">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1652628989298" />
-    <state width="1663" height="277" key="GridCell.Tab.0.left" timestamp="1652628989295">
+    <state width="1663" height="277" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
+    <state width="1663" height="277" key="GridCell.Tab.0.left" timestamp="1652913647268">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1652628989295" />
-    <state width="1663" height="277" key="GridCell.Tab.0.right" timestamp="1652628989298">
+    <state width="1663" height="277" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
+    <state width="1663" height="277" key="GridCell.Tab.0.right" timestamp="1652913647268">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1652628989298" />
+    <state width="1663" height="277" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1652913647268" />
     <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size" timestamp="1651665826140">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
     <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size/0.0.1707.1027@0.0.1707.1027" timestamp="1651665826140" />
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2" timestamp="1651662873205">
+    <state x="446" y="247" key="Vcs.Push.Dialog.v2" timestamp="1652913343739">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1651662873205" />
+    <state x="446" y="247" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1652913343739" />
     <state x="671" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1652912808277">
       <screen x="0" y="0" width="1707" height="1027" />
     </state>

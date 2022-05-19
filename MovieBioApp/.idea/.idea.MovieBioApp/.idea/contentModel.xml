@@ -28,6 +28,7 @@
       <e p="packages" t="ExcludeRecursive" />
       <e p="Pages" t="Include">
         <e p="_Host.cshtml" t="Include" />
+        <e p="AboutUs.razor" t="Include" />
         <e p="Actors.razor" t="Include" />
         <e p="DirectorPage.razor" t="Include" />
         <e p="Error.cshtml" t="Include" />
@@ -39,6 +40,9 @@
         <e p="MoviePage.razor" t="Include" />
         <e p="Movies.razor" t="Include" />
         <e p="SignUp.razor" t="Include" />
+        <e p="Top200Actors.razor" t="Include" />
+        <e p="Top200Directors.razor" t="Include" />
+        <e p="Top200Movies.razor" t="Include" />
         <e p="UserProfile.razor" t="Include" />
       </e>
       <e p="Program.cs" t="Include" />
