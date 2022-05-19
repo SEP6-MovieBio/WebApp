@@ -448,3 +448,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+**/MovieBioApp/obj/Debug/net5.0
