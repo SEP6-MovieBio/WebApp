@@ -15,11 +15,19 @@
     <link href="css/starSystem.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="row justify-content-start p-3">
     <img src="https://foundrmeet.com/wp-content/themes/cera/assets/images/avatars/user-avatar.png" class="col-auto rounded-circle" alt="profile picture">
     <div class="col-auto">
         <h1>Bio</h1>
-        <textarea id="bioTextArea" rows="10" cols="40">@Handler.UserInfo.biography</textarea>
+        @{
+            string biography = "";
+            if (Handler != null)
+            {
+                biography = Handler.biography;
+            }
+        }
+        <textarea id="bioTextArea" rows="10" cols="40">@biography</textarea>
     </div>
     <div class="col-auto border-right-20">
         <div>
@@ -28,7 +36,7 @@
         </div>
         <div>
             <h1>Confirm password</h1>
-            <input type="text" id="confirmPasswordField" >
+            <input type="text" id="confirmPasswordField">
         </div>
         <div class="col-auto border-bottom-20">
             <button class="btn-success mr-5">Submit</button>
@@ -39,26 +47,32 @@
 <h1>Email</h1>
 @{
     string email = "";
-    if (Handler.UserInfo.emailIsHidden)
+    if (Handler != null)
     {
-        email = "Email is hidden";
-    }
-    else
-    {
-        email = Handler.UserInfo.email;
+        if (Handler.emailIsHidden)
+        {
+            email = "Email is hidden";
+        }
+        else
+        {
+            email = Handler.email;
+        }
     }
 }
 <p>@email</p>
 <h1>Phone</h1>
 @{
     string phone = "";
-    if (Handler.UserInfo.phoneIsHidden)
+    if (Handler != null)
     {
-        phone = "Phone number is hidden";
-    }
-    else
-    {
-        phone = Handler.UserInfo.phoneNumber;
+        if (Handler.phoneIsHidden)
+        {
+            phone = "Phone number is hidden";
+        }
+        else
+        {
+            phone = Handler.phoneNumber;
+        }
     }
 }
 <p class="border-bottom-20">@phone</p>
@@ -72,6 +86,14 @@
 
 </html>
 @code {
-     UserHandler Handler = new UserHandler("test");
+    UserInfo Handler;
+    UserInfoService Service = new UserInfoService();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Handler = await Service.GetUserInfoRest("test");
+        
+    }
+
 
 }

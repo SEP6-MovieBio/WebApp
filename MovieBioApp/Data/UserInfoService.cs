@@ -11,7 +11,7 @@ namespace MovieBioApp.Data
             string path = "https://moviebiodb.azurewebsites.net/userinfo?username=" + username;
             HttpClient client = new HttpClient();
             UserInfo userInfo = null;
-            HttpResponseMessage response = await client.GetAsync(path).ConfigureAwait(false);
+            HttpResponseMessage response = await client.GetAsync(path);
             if (response.IsSuccessStatusCode)
             {
                 string jsonString = await response.Content.ReadAsStringAsync();
