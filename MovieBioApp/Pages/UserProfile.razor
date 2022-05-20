@@ -1,6 +1,7 @@
 ﻿@page "/UserProfile"
 @using MovieBioApp.Controllers
 @using MovieBioApp.Data
+@using System.Text.Json
 <h3>UserProfile</h3>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,20 +28,21 @@
                 biography = Handler.biography;
             }
         }
-        <textarea id="bioTextArea" rows="10" cols="40">@biography</textarea>
+        <textarea id="bioTextArea" content=@biography rows="10" cols="40"></textarea>
+        <button id="bioButton" onclick="">Update bio</button>
     </div>
     <div class="col-auto border-right-20">
         <div>
             <h1>Your Password</h1>
-            <input type="text" id="passwordField">
+            <input type="text" bind=@password id="passwordField">
         </div>
         <div>
             <h1>Confirm password</h1>
-            <input type="text" id="confirmPasswordField">
+            <input type="text" bind=@confirmPassword id="confirmPasswordField">
         </div>
         <div class="col-auto border-bottom-20">
-            <button class="btn-success mr-5">Submit</button>
-            <button class="btn-danger">Cancel</button>
+            <button onclick=@submitChangePassword() class="btn-success mr-5">Submit</button>
+            <button onclick=@cancelPassword() class="btn-danger">Cancel</button>
         </div>
     </div>
 </div>
@@ -86,6 +88,8 @@
 
 </html>
 @code {
+    string username = "test";
+    string password,confirmPassword = "";
     UserInfo Handler;
     UserInfoService Service = new UserInfoService();
 
@@ -93,6 +97,40 @@
     {
         Handler = await Service.GetUserInfoRest("test");
         
+    }
+
+    public async Task<bool> submitChangePassword()
+    {
+        if (password == confirmPassword)
+        {
+            
+            return await Service.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString())));
+        }
+        else
+        {
+            confirmPassword = "Error passwords do not match";
+            return false;
+        }
+    }
+    public async Task<bool> submitChangebio()
+    {
+        if (password == confirmPassword)
+        {
+
+            return await Service.Postbio(JsonSerializer.Serialize(Handler));
+        }
+        else
+        {
+            confirmPassword = "Error passwords do not match";
+            return false;
+        }
+    }
+
+    public bool cancelPassword()
+    {
+        password = "";
+        confirmPassword = "";
+        return true;
     }
 
 

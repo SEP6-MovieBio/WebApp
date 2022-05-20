@@ -21,5 +21,34 @@ namespace MovieBioApp.Data
 
             return userInfo;
         }
+
+        public async Task<bool> PostPasswordHash(string user)
+        {
+            string path = "https://moviebiodb.azurewebsites.net/User/postHash";
+            HttpClient client = new HttpClient();
+            HttpContent content = new StringContent(user);
+            HttpResponseMessage response = await client.PostAsync(path,content);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
+        public async Task<bool> Postbio(string userinfo)
+        {
+            string path = "https://moviebiodb.azurewebsites.net/User/postinfo";
+            HttpClient client = new HttpClient();
+            HttpContent content = new StringContent(userinfo);
+            HttpResponseMessage response = await client.PostAsync(path,content);
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+
+        }
     }
 }
