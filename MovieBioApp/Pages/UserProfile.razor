@@ -1,6 +1,77 @@
 ﻿@page "/UserProfile"
+@using MovieBioApp.Controllers
+@using MovieBioApp.Data
 <h3>UserProfile</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MovieBioApp</title>
+    <base href="~/"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="MovieBioApp.styles.css" rel="stylesheet"/>
+    <link href="css/starSystem.css" rel="stylesheet">
+</head>
+<body>
+<div class="row justify-content-start p-3">
+    <img src="https://foundrmeet.com/wp-content/themes/cera/assets/images/avatars/user-avatar.png" class="col-auto rounded-circle" alt="profile picture">
+    <div class="col-auto">
+        <h1>Bio</h1>
+        <textarea id="bioTextArea" rows="10" cols="40">@Handler.UserInfo.biography</textarea>
+    </div>
+    <div class="col-auto border-right-20">
+        <div>
+            <h1>Your Password</h1>
+            <input type="text" id="passwordField">
+        </div>
+        <div>
+            <h1>Confirm password</h1>
+            <input type="text" id="confirmPasswordField" >
+        </div>
+        <div class="col-auto border-bottom-20">
+            <button class="btn-success mr-5">Submit</button>
+            <button class="btn-danger">Cancel</button>
+        </div>
+    </div>
+</div>
+<h1>Email</h1>
+@{
+    string email = "";
+    if (Handler.UserInfo.emailIsHidden)
+    {
+        email = "Email is hidden";
+    }
+    else
+    {
+        email = Handler.UserInfo.email;
+    }
+}
+<p>@email</p>
+<h1>Phone</h1>
+@{
+    string phone = "";
+    if (Handler.UserInfo.phoneIsHidden)
+    {
+        phone = "Phone number is hidden";
+    }
+    else
+    {
+        phone = Handler.UserInfo.phoneNumber;
+    }
+}
+<p class="border-bottom-20">@phone</p>
+<h1 class="justify-content-end">Favorite movies</h1>
+<div>
+    <h1>Niceness ratio</h1>
+    <div class="stars" style="--w: 40%;"></div>
+</div>
 
+</body>
+
+</html>
 @code {
-    
+     UserHandler Handler = new UserHandler("test");
+
 }
