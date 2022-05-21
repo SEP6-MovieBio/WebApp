@@ -1,4 +1,5 @@
 ﻿using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -26,7 +27,8 @@ namespace MovieBioApp.Data
         {
             string path = "https://moviebiodb.azurewebsites.net/User/postHash";
             HttpClient client = new HttpClient();
-            HttpContent content = new StringContent(user);
+            HttpContent content = new StringContent(user,Encoding.UTF8, 
+                "application/json");
             HttpResponseMessage response = await client.PostAsync(path,content);
             if (response.IsSuccessStatusCode)
             {
@@ -40,7 +42,8 @@ namespace MovieBioApp.Data
         {
             string path = "https://moviebiodb.azurewebsites.net/User/postinfo";
             HttpClient client = new HttpClient();
-            HttpContent content = new StringContent(userinfo);
+            HttpContent content = new StringContent(userinfo,Encoding.UTF8, 
+                "text/json");
             HttpResponseMessage response = await client.PostAsync(path,content);
             if (response.IsSuccessStatusCode)
             {

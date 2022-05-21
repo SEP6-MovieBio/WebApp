@@ -22,33 +22,37 @@
     <div class="col-auto">
         <h1>Bio</h1>
         @{
-            string biography = "";
+           
             if (Handler != null)
             {
-                biography = Handler.biography;
+                <textarea id="bioTextArea" @bind="Handler.biography" rows="10" cols="30"></textarea>
+            }
+            else
+            {
+                <textarea id="bioTextArea" rows="10" cols="30"></textarea>
             }
         }
-        <textarea id="bioTextArea" content=@biography rows="10" cols="40"></textarea>
-        <button id="bioButton" onclick="">Update bio</button>
+        
+        <button id="bioButton" @onclick="submitChangebio">Update bio</button>
     </div>
     <div class="col-auto border-right-20">
         <div>
             <h1>Your Password</h1>
-            <input type="text" bind=@password id="passwordField">
+            <input type="text" @bind="password" id="passwordField">
         </div>
         <div>
             <h1>Confirm password</h1>
-            <input type="text" bind=@confirmPassword id="confirmPasswordField">
+            <input type="text" @bind="confirmPassword" id="confirmPasswordField">
         </div>
         <div class="col-auto border-bottom-20">
-            <button onclick=@submitChangePassword() class="btn-success mr-5">Submit</button>
-            <button onclick=@cancelPassword() class="btn-danger">Cancel</button>
+            <button @onclick="submitChangePassword" class="btn-success mr-5">Submit</button>
+            <button @onclick="cancelPassword" class="btn-danger">Cancel</button>
         </div>
     </div>
 </div>
 <h1>Email</h1>
 @{
-    string email = "";
+    
     if (Handler != null)
     {
         if (Handler.emailIsHidden)
@@ -64,7 +68,7 @@
 <p>@email</p>
 <h1>Phone</h1>
 @{
-    string phone = "";
+    
     if (Handler != null)
     {
         if (Handler.phoneIsHidden)
@@ -89,13 +93,17 @@
 </html>
 @code {
     string username = "test";
+    string email = "";
+    string phone = "";
     string password,confirmPassword = "";
+    string biography = "";
     UserInfo Handler;
     UserInfoService Service = new UserInfoService();
 
     protected override async Task OnInitializedAsync()
     {
-        Handler = await Service.GetUserInfoRest("test");
+        
+        Handler = await Service.GetUserInfoRest(username);
         
     }
 
@@ -114,19 +122,16 @@
     }
     public async Task<bool> submitChangebio()
     {
-        if (password == confirmPassword)
-        {
-
-            return await Service.Postbio(JsonSerializer.Serialize(Handler));
-        }
-        else
-        {
-            confirmPassword = "Error passwords do not match";
-            return false;
-        }
+        
+        return await Service.Postbio(JsonSerializer.Serialize(Handler));
     }
 
-    public bool cancelPassword()
+    public void changebio()
+    {
+        Handler.biography = biography;
+    }
+
+    public async Task<bool> cancelPassword()
     {
         password = "";
         confirmPassword = "";
