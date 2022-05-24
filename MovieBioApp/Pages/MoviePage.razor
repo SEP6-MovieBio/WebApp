@@ -21,7 +21,7 @@
 <body>
 <div class="container">
 
-    @if (_movie == null)
+    @if (_movie == null || _omDbApiObj == null)
     {
         <p>
             <em>Loading...</em>
@@ -174,8 +174,6 @@
 </html>
 
 @code {
-    int _dummyMovieID = 13286420;
-    int _randomId = RandomMovieID();
     string _reviewTextfield;
     float _reviewRating;
 
@@ -187,21 +185,20 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _movie = await MovieService.GetMovieById(_dummyMovieID);
-        _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
+        _movie = await MovieService.GetMovieByRandChar(RandomChar());
 
+        _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
+        
         _omDbActors = _omDbApiObj.actors.Split(new char[] {','}).ToList();
         _omDbDirectors = _omDbApiObj.directors.Split(new char[] {','}).ToList();
         _omDbGenre = _omDbApiObj.genre.Split(new char[] {','}).ToList();
     }
 
-    private static int RandomMovieID(){
-        int min = 15414;
-        int max = 13287388;
-
-        Random random = new Random();
-        int number = random.Next(min, max);
-        return number;
+    private static char RandomChar(){
+        Random rnd = new Random();
+        char randomChar = (char)rnd.Next('a','z');
+        Console.WriteLine("\n" + randomChar + "\n");
+        return randomChar;
     }
 
     private void SaveReview()

@@ -21,15 +21,24 @@ namespace MovieBioApp.Data.MovieService
             client = new HttpClient();
         }
         
-        //GET Movie by ID
-        public async Task<Movie> GetMovieById(int movieId)
+        //GET Movie by random character
+        public async Task<Movie> GetMovieByRandChar(char randChar)
         {
-            Task<string> info = client.GetStringAsync(uri + $"movieId?id={movieId}");
+            Task<string> info = client.GetStringAsync(uri + $"RandomChar?randChar={randChar}");
             string message = await info;
             Movie result = JsonSerializer.Deserialize<Movie>(message);
 
             return result;
         }
-        
+
+        //GET Movie by ID
+        public async Task<Movie> GetMovieById(int id)
+        {
+            Task<string> info = client.GetStringAsync(uri + $"MovieID?id={id}");
+            string message = await info;
+            Movie result = JsonSerializer.Deserialize<Movie>(message);
+
+            return result;        
+        }
     }
 }

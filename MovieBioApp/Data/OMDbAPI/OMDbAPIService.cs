@@ -26,7 +26,7 @@ namespace MovieBioApp.Data.OMDbAPI
 
             string message = await info;
             OMDbAPIObj result = JsonSerializer.Deserialize<OMDbAPIObj>(message);
-
+            
             return result;
 
         }

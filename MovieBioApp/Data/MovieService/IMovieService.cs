@@ -5,8 +5,9 @@ namespace MovieBioApp.Data.MovieService
 {
     public interface IMovieService
     {
-        Task<Movie> GetMovieById(int movieId);
-        
+        Task<Movie> GetMovieByRandChar(char randChar);
+        Task<Movie> GetMovieById(int id);
+
         
     }
 }
