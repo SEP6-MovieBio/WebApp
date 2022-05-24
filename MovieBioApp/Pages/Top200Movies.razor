@@ -1,6 +1,6 @@
 ﻿@page "/Top200Movies"
 @using System.Collections
-@using MovieBioApp.Data
+@using MovieBioApp.Models
 <div class="container paddingRemove">
     <div class="row">
         <div class="col-md-12">
@@ -17,18 +17,18 @@
     </div>
         @for (var i = 0; i < 200; i++)
         {
-            amountOfMovies.Add(new Movie("TestTitle", "TestGenre", 7.4, "TestDirector", "TestStarActor", "TestUrlPicture"));
+            amountOfMovies.Add(new Movie(1,"TestTitle",2000,testList,8,6,5,reviewTestList));
         }
                 
         @foreach (Movie movie in amountOfMovies)
         {
             <div class="row rowBorder">
                 <div class="col-md-2">
-                    <div>@movie.Title</div>
+                    <div>@movie.MovieTitle</div>
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@movie.Genre</div>
+                    <div>INSERT GENRE FROM OMDBAPI HERE</div>
                 </div>
                 
                 <div class="col-md-2">
@@ -40,11 +40,11 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@movie.StarActor</div>
+                    <div>INSERT STARS FROM OMDBAPI HERE</div>
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@movie.Picture</div>
+                    <div>INSERT GENRE FROM OMDBAPI HERE</div>
                 </div>
             </div>
         }
@@ -53,6 +53,17 @@
 
 
 @code {
+     List<string> testList = new List<string>();
+    List<MovieReview> reviewTestList = new List<MovieReview>();
+
+    
+    protected override async Task OnInitializedAsync()
+    {
+        testList.Add("Test1");
+        testList.Add("Test2");
+
+    }
+
     private ArrayList amountOfMovies = new ArrayList();
     
     
