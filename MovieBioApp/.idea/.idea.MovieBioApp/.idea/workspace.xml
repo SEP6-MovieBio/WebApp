@@ -22,34 +22,60 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="Menu og footer lavet i ny branch">
-      <change afterPath="$PROJECT_DIR$/Data/Actor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Director.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Movie.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" afterDir="false" />
+    <list default="true" id="d754eeb1-0137-4561-8081-fa1fc0b3eb6f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Top200Actors.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Top200Actors.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Top200Directors.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Top200Directors.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pages/Top200Movies.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/Top200Movies.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/MainLayout.razor.css" beforeDir="false" afterPath="$PROJECT_DIR$/Shared/MainLayout.razor.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MovieBioApp/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/UserHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/UserHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data/UserInfoService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Data/UserInfoService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pages/UserProfile.razor" beforeDir="false" afterPath="$PROJECT_DIR$/Pages/UserProfile.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.StaticWebAssets.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.Views.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/net5.0/MovieBioApp.runtimeconfig.dev.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.GeneratedMSBuildEditorConfig.editorconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.TagHelpers.output.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.TagHelpers.output.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.Views.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.assets.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.csproj.FileListAbsolute.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.genruntimeconfig.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/App.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Error.cshtml.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/FetchData.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/FetchData.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/Index.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/MainLayout.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/SurveyPrompt.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/Shared/SurveyPrompt.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/MovieBioApp.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Pages/FetchData.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Pages/FetchData.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Pages/Index.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/NavMenu.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/SurveyPrompt.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/apphost.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/ref/MovieBioApp.dll" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/ref/MovieBioApp.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/Shared/MainLayout.razor.rz.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/bundle/MovieBioApp.styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/bundle/MovieBioApp.styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/projectbundle/MovieBioApp.bundle.scp.css" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/scopedcss/projectbundle/MovieBioApp.bundle.scp.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wwwroot/css/site.css" beforeDir="false" afterPath="$PROJECT_DIR$/wwwroot/css/site.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/staticwebassets/MovieBioApp.StaticWebAssets.Manifest.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/staticwebassets/MovieBioApp.StaticWebAssets.Manifest.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/net5.0/staticwebassets/MovieBioApp.StaticWebAssets.xml" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/net5.0/staticwebassets/MovieBioApp.StaticWebAssets.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.dgspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.targets" beforeDir="false" afterPath="$PROJECT_DIR$/obj/MovieBioApp.csproj.nuget.g.targets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.assets.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/obj/project.packagespec.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,47 +92,29 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="MenuAndFooter" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/_Host.cshtml.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/Razor/_Imports.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F695F6-91C2-45D1-9D01-5128E4E8BEDC/1B2/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/Razor/Pages/FetchData.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/Shared/MainLayout.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/Razor/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/61F695F6-91C2-45D1-9D01-5128E4E8BEDC/2C2/AsyncTaskMethodBuilderT.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/obj/Debug/net5.0/RazorDeclaration/App.razor.g.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/Pages/SignUp.razor" />
-        <option value="$PROJECT_DIR$/Pages/LogIn.razor" />
-        <option value="$PROJECT_DIR$/Pages/Actors.razor" />
-        <option value="$PROJECT_DIR$/Pages/Movies.razor" />
-        <option value="$PROJECT_DIR$/Pages/UserProfie.razor" />
-        <option value="$PROJECT_DIR$/Pages/MoviePage.razor" />
-        <option value="$PROJECT_DIR$/Pages/FavoriteMovies.razor" />
-        <option value="$PROJECT_DIR$/Pages/DirectorPage.razor" />
-        <option value="$PROJECT_DIR$/Pages/AboutUs.razor" />
-        <option value="$PROJECT_DIR$/Pages/_Host.cshtml" />
-        <option value="$PROJECT_DIR$/Pages/UserProfile.razor" />
-        <option value="$PROJECT_DIR$/Properties/launchSettings.json" />
-        <option value="$PROJECT_DIR$/Pages/Index.razor" />
-        <option value="$PROJECT_DIR$/Shared/Footer.css" />
-        <option value="$PROJECT_DIR$/Shared/Footer.razor" />
-        <option value="$PROJECT_DIR$/Shared/FooterBar.css" />
-        <option value="$PROJECT_DIR$/Shared/FooterBar.razor" />
-        <option value="$PROJECT_DIR$/Shared/NavMenu.razor" />
-        <option value="$PROJECT_DIR$/Shared/NavMenu.razor.css" />
-        <option value="$PROJECT_DIR$/Data/Movie.cs" />
-        <option value="$PROJECT_DIR$/Shared/MainLayout.razor.css" />
-        <option value="$PROJECT_DIR$/Shared/MainLayout.razor" />
-        <option value="$PROJECT_DIR$/Pages/Top200Movies.razor" />
-        <option value="$PROJECT_DIR$/wwwroot/css/site.css" />
-        <option value="$PROJECT_DIR$/Data/Director.cs" />
-        <option value="$PROJECT_DIR$/Data/Actor.cs" />
-        <option value="$PROJECT_DIR$/Pages/Top200Actors.razor" />
-        <option value="$PROJECT_DIR$/Pages/Top200Directors.razor" />
-      </list>
-    </option>
+    <changedPaths>
+      <option value="$PROJECT_DIR$/Controllers/UserHandler.cs" />
+      <option value="$PROJECT_DIR$/Data/UserInfoService.cs" />
+      <option value="$PROJECT_DIR$/Pages/UserProfile.razor" />
+    </changedPaths>
   </component>
   <component name="ProjectId" id="28hIyq0UxB3a12B6BgwkHRVWXs8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -115,9 +123,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.MovieBioApp">
     <configuration name="MovieBioApp" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
@@ -161,7 +172,8 @@
       <updated>1651662647938</updated>
       <workItem from="1651662656883" duration="3499000" />
       <workItem from="1652912800620" duration="827000" />
-      <workItem from="1652955879135" duration="30172000" />
+      <workItem from="1652955879135" duration="17748000" />
+      <workItem from="1653031671554" duration="5098000" />
     </task>
     <task id="LOCAL-00001" summary="Inital Setup">
       <created>1651662860783</created>
@@ -184,15 +196,11 @@
       <option name="project" value="LOCAL" />
       <updated>1652956032657</updated>
     </task>
-    <task id="LOCAL-00004" summary="Menu og footer lavet i ny branch">
-      <created>1652984085684</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1652984085684</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
@@ -213,45 +221,25 @@
     <MESSAGE value="Inital Setup" />
     <MESSAGE value="Pages Created" />
     <MESSAGE value="Added more pages" />
-    <MESSAGE value="Menu og footer lavet i ny branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Menu og footer lavet i ny branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more pages" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="612" y="316" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1652969880200">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state x="612" y="316" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1707.1027@0.0.1707.1027" timestamp="1652969880200" />
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom" timestamp="1653387268740">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.bottom/0.0.1707.1027@0.0.1707.1027" timestamp="1653387268740" />
-    <state width="1663" height="277" key="GridCell.Tab.0.center" timestamp="1653387268740">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.center/0.0.1707.1027@0.0.1707.1027" timestamp="1653387268740" />
-    <state width="1663" height="277" key="GridCell.Tab.0.left" timestamp="1653387268740">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.left/0.0.1707.1027@0.0.1707.1027" timestamp="1653387268740" />
-    <state width="1663" height="277" key="GridCell.Tab.0.right" timestamp="1653387268740">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state width="1663" height="277" key="GridCell.Tab.0.right/0.0.1707.1027@0.0.1707.1027" timestamp="1653387268740" />
-    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size" timestamp="1652971419293">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state x="446" y="246" key="Rider.ProjectTemplateDialog.Size/0.0.1707.1027@0.0.1707.1027" timestamp="1652971419293" />
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2" timestamp="1652984094419">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state x="446" y="247" key="Vcs.Push.Dialog.v2/0.0.1707.1027@0.0.1707.1027" timestamp="1652984094419" />
-    <state x="671" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1652912808277">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state x="671" y="428" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1707.1027@0.0.1707.1027" timestamp="1652912808277" />
-    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup" timestamp="1653310309199">
-      <screen x="0" y="0" width="1707" height="1027" />
-    </state>
-    <state x="516" y="222" width="672" height="678" key="search.everywhere.popup/0.0.1707.1027@0.0.1707.1027" timestamp="1653310309199" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Data/UserInfoService.cs</url>
+          <line>11</line>
+          <properties documentPath="D:\git\WebApp\MovieBioApp\Data\UserInfoService.cs" initialLine="11" containingFunctionPresentation="method 'GetUserInfoRest'">
+            <startOffsets>
+              <option value="333" />
+            </startOffsets>
+            <endOffsets>
+              <option value="370" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

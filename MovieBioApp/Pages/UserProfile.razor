@@ -1,6 +1,142 @@
 ﻿@page "/UserProfile"
+@using MovieBioApp.Controllers
+@using MovieBioApp.Data
+@using System.Text.Json
 <h3>UserProfile</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MovieBioApp</title>
+    <base href="~/"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="MovieBioApp.styles.css" rel="stylesheet"/>
+    <link href="css/starSystem.css" rel="stylesheet">
+</head>
+<body>
 
-@code {
+<div class="row justify-content-start p-3">
+    <img src="https://foundrmeet.com/wp-content/themes/cera/assets/images/avatars/user-avatar.png" class="col-auto rounded-circle" alt="profile picture">
+    <div class="col-auto">
+        <h1>Bio</h1>
+        @{
+           
+            if (Handler != null)
+            {
+                <textarea id="bioTextArea" @bind="Handler.biography" rows="10" cols="30"></textarea>
+            }
+            else
+            {
+                <textarea id="bioTextArea" rows="10" cols="30"></textarea>
+            }
+        }
+        
+        <button id="bioButton" @onclick="submitChangebio">Update bio</button>
+    </div>
+    <div class="col-auto border-right-20">
+        <div>
+            <h1>Your Password</h1>
+            <input type="text" @bind="password" id="passwordField">
+        </div>
+        <div>
+            <h1>Confirm password</h1>
+            <input type="text" @bind="confirmPassword" id="confirmPasswordField">
+        </div>
+        <div class="col-auto border-bottom-20">
+            <button @onclick="submitChangePassword" class="btn-success mr-5">Submit</button>
+            <button @onclick="cancelPassword" class="btn-danger">Cancel</button>
+        </div>
+    </div>
+</div>
+<h1>Email</h1>
+@{
     
+    if (Handler != null)
+    {
+        if (Handler.emailIsHidden)
+        {
+            email = "Email is hidden";
+        }
+        else
+        {
+            email = Handler.email;
+        }
+    }
+}
+<p>@email</p>
+<h1>Phone</h1>
+@{
+    
+    if (Handler != null)
+    {
+        if (Handler.phoneIsHidden)
+        {
+            phone = "Phone number is hidden";
+        }
+        else
+        {
+            phone = Handler.phoneNumber;
+        }
+    }
+}
+<p class="border-bottom-20">@phone</p>
+<h1 class="justify-content-end">Favorite movies</h1>
+<div>
+    <h1>Niceness ratio</h1>
+    <div class="stars" style="--w: 40%;"></div>
+</div>
+
+</body>
+
+</html>
+@code {
+    string username = "test";
+    string email = "";
+    string phone = "";
+    string password,confirmPassword = "";
+    string biography = "";
+    UserInfo Handler;
+    UserInfoService Service = new UserInfoService();
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        Handler = await Service.GetUserInfoRest(username);
+        
+    }
+
+    public async Task<bool> submitChangePassword()
+    {
+        if (password == confirmPassword)
+        {
+            
+            return await Service.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString())));
+        }
+        else
+        {
+            confirmPassword = "Error passwords do not match";
+            return false;
+        }
+    }
+    public async Task<bool> submitChangebio()
+    {
+        
+        return await Service.Postbio(JsonSerializer.Serialize(Handler));
+    }
+
+    public void changebio()
+    {
+        Handler.biography = biography;
+    }
+
+    public async Task<bool> cancelPassword()
+    {
+        password = "";
+        confirmPassword = "";
+        return true;
+    }
+
+
 }
