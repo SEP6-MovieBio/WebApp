@@ -1,54 +1,66 @@
 ﻿@page "/Top200Movies"
 @using System.Collections
+@using MovieBioApp.Data.MovieService
 @using MovieBioApp.Models
-<div class="container paddingRemove">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Top 200 Movies</h3>
-        </div>
-    </div>
-    <div class="row rowStyle">
-        <div class="col-md-2">Title</div>
-        <div class="col-md-2">Genre</div>
-        <div class="col-md-2">Rating</div>
-        <div class="col-md-2">Director</div>
-        <div class="col-md-2">Star Actor</div>
-        <div class="col-md-2">Picture</div>
-    </div>
-        @for (var i = 0; i < 200; i++)
-        {
-            amountOfMovies.Add(new Movie(1,"TestTitle",2000,testList,8,6,5,reviewTestList));
-        }
-                
-        @foreach (Movie movie in amountOfMovies)
-        {
-            <div class="row rowBorder">
-                <div class="col-md-2">
-                    <div>@movie.MovieTitle</div>
-                </div>
-                
-                <div class="col-md-2">
-                    <div>INSERT GENRE FROM OMDBAPI HERE</div>
-                </div>
-                
-                <div class="col-md-2">
-                    <div>@movie.Rating</div>
-                </div>
-                
-                <div class="col-md-2">
-                    <div>@movie.Director</div>
-                </div>
-                
-                <div class="col-md-2">
-                    <div>INSERT STARS FROM OMDBAPI HERE</div>
-                </div>
-                
-                <div class="col-md-2">
-                    <div>INSERT GENRE FROM OMDBAPI HERE</div>
+
+@inject IMovieService MovieService;
+
+    @if (_top200Movies == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <div class="container paddingRemove">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Top 200 Movies</h3>
                 </div>
             </div>
-        }
-</div>
+            <div class="row rowStyle">
+                <div class="col-md-2">Title</div>
+                <div class="col-md-2">Genre</div>
+                <div class="col-md-2">Rating</div>
+                <div class="col-md-2">Director</div>
+                <div class="col-md-2">Star Actor</div>
+                <div class="col-md-2">Picture</div>
+            </div>
+
+                
+            @foreach (Movie movie in _top200Movies)
+            {
+                <div class="row rowBorder">
+                    <div class="col-md-2">
+                        <div>@movie.MovieTitle</div>
+                    </div>
+                
+                    <div class="col-m
+d-2">
+                        <div>INSERT GENRE FROM OMDBAPI HERE</div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <div>@movie.Rating</div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <div>@movie.Director</div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <div>INSERT STARS FROM OMDBAPI HERE</div>
+                    </div>
+                
+                    <div class="col-md-2">
+                        <div>INSERT GENRE FROM OMDBAPI HERE</div>
+                    </div>
+                </div>
+            }
+        </div> 
+    }
+
 
 
 
@@ -56,15 +68,20 @@
      List<string> testList = new List<string>();
     List<MovieReview> reviewTestList = new List<MovieReview>();
 
-    
+    List<Movie> _top200Movies;
+    List<OMDbAPIObj> _omdbMovies;
+
     protected override async Task OnInitializedAsync()
     {
-        testList.Add("Test1");
-        testList.Add("Test2");
+        _top200Movies = await MovieService.GetTop200Movies();
+
 
     }
 
     private ArrayList amountOfMovies = new ArrayList();
-    
-    
+
+    private List<OMDbAPIObj> getOMDBMovies()
+    {
+        return _omdbMovies;
+    }
 }

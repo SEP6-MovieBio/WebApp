@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MovieBioApp.Models;
 
 namespace MovieBioApp.Data.MovieService
@@ -8,6 +9,6 @@ namespace MovieBioApp.Data.MovieService
         Task<Movie> GetMovieByRandChar(char randChar);
         Task<Movie> GetMovieById(int id);
 
-        
+        Task<List<Movie>> GetTop200Movies();
     }
 }

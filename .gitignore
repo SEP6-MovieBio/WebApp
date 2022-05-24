@@ -23,6 +23,9 @@
 **/.idea/**/dataSources.local.xml
 **/.idea/**/sqlDataSources.xml
 **/.idea/**/dynamic.xml
+**/.idea/**/encodings.xml
+**/.idea/**/indexLayout.xml
+**/.idea/**/vcs.xml
 **/aws.xml
 
 # Rider
@@ -486,3 +489,5 @@ Desktop.ini
 .DS_Store
 MovieBioApp/obj/Debug
 MovieBioApp\obj\Debug
+
+**/.idea/**/projectSettingsUpdater.xml
