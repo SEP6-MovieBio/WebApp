@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -40,5 +41,18 @@ namespace MovieBioApp.Data.MovieService
 
             return result;        
         }
+        
+        //Get top200 movies
+        public async Task<List<Movie>> GetTop200Movies()
+        {
+            Task<string> info = client.GetStringAsync(uri + $"top200Movies");
+            string message = await info;
+            List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            
+            return result;  
+        }
+        
     }
 }
