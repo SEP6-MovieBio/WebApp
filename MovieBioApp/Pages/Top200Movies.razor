@@ -1,6 +1,59 @@
 ﻿@page "/Top200Movies"
-<h3>Top200Movies</h3>
+@using System.Collections
+@using MovieBioApp.Data
+<div class="container paddingRemove">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Top 200 Movies</h3>
+        </div>
+    </div>
+    <div class="row rowStyle">
+        <div class="col-md-2">Title</div>
+        <div class="col-md-2">Genre</div>
+        <div class="col-md-2">Rating</div>
+        <div class="col-md-2">Director</div>
+        <div class="col-md-2">Star Actor</div>
+        <div class="col-md-2">Picture</div>
+    </div>
+        @for (var i = 0; i < 200; i++)
+        {
+            amountOfMovies.Add(new Movie("TestTitle", "TestGenre", 7.4, "TestDirector", "TestStarActor", "TestUrlPicture"));
+        }
+                
+        @foreach (Movie movie in amountOfMovies)
+        {
+            <div class="row rowBorder">
+                <div class="col-md-2">
+                    <div>@movie.Title</div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div>@movie.Genre</div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div>@movie.Rating</div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div>@movie.Director</div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div>@movie.StarActor</div>
+                </div>
+                
+                <div class="col-md-2">
+                    <div>@movie.Picture</div>
+                </div>
+            </div>
+        }
+</div>
+
+
 
 @code {
+    private ArrayList amountOfMovies = new ArrayList();
+    
     
 }

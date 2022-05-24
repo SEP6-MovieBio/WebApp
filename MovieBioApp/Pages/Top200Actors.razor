@@ -1,6 +1,60 @@
 ﻿@page "/Top200Actors"
-<h3>Top200Actors</h3>
+@using System.Collections
+@using MovieBioApp.Data
+<div class="container paddingRemove">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Top 200 Actors</h3>
+        </div>
+    </div>
+    <div class="row rowStyle">
+        <div class="col-md-2">First Name</div>
+        <div class="col-md-2">Last Name</div>
+        <div class="col-md-2">Rating</div>
+        <div class="col-md-2">Age</div>
+        <div class="col-md-2">Top Movie Starred In</div>
+        <div class="col-md-2">Picture</div>
+    </div>
+    
+    @for (var i = 0; i < 200; i++)
+        {
+            amountOfActors.Add(new Actor("TestFirstName", "TestLastName", 7.4, 30, "MovieTitle", "TestUrlPicture"));
+        }
+
+        @foreach (Actor actor in amountOfActors)
+        {
+            <div class="row rowBorder">
+                <div class="col-md-2">
+                    <div>@actor.FirstName</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@actor.LastName</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@actor.Rating</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@actor.Age</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@actor.TopMovieStarredIn</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@actor.Picture</div>
+                </div>
+            </div>
+        }
+</div>
+
+
 
 @code {
+    private ArrayList amountOfActors = new ArrayList();
+    
     
 }
