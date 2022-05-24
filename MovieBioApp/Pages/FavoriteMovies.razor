@@ -31,7 +31,7 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@movie</div>
+                    <div>@omdbDict[movie.MovieTitle].genre</div>
                 </div>
                 
                 <div class="col-md-2">
@@ -39,7 +39,11 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@movie.Director</div>
+                    <div>@foreach (string director in movie.Director)
+                         {
+                             <p>@director</p>
+                         }
+                        </div>
                 </div>
                 
                 <div class="col-md-2">
@@ -47,7 +51,7 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div><img src="@omdbDict[movie.MovieTitle].image" alt="No image for this movie"></div>
+                    <div><img src="@omdbDict[movie.MovieTitle].image" alt="No image for this movie" width="100%"></div>
                 </div>
             </div>
         }
@@ -61,13 +65,16 @@
 
 @code {
     string username = "test";
-    List<Movie> favoriteMovies = new List<Movie>();
+    List<Movie> favoriteMovies;
     IOMDbAPIService OmDbApiService = new OMDbAPIService();
     Dictionary<string, OMDbAPIObj> omdbDict;
-    UserInfoService UserInfoService = new UserInfoService();
+    UserInfoService UserInfoService;
 
     protected override async Task OnInitializedAsync()
     {
+        favoriteMovies = new List<Movie>();
+        UserInfoService = new UserInfoService();
+        omdbDict = new Dictionary<string, OMDbAPIObj>();
         favoriteMovies = await UserInfoService.GetFavoriteMovies(username);
         foreach (Movie m in favoriteMovies)
         {
