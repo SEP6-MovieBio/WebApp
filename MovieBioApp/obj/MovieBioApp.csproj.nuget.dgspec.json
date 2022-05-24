@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\MovieBioApp.csproj": {}
+    "C:\\Users\\kawaz\\Documents\\GitHub\\WebApp\\MovieBioApp\\MovieBioApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\MovieBioApp.csproj": {
+    "C:\\Users\\kawaz\\Documents\\GitHub\\WebApp\\MovieBioApp\\MovieBioApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\MovieBioApp.csproj",
+        "projectUniqueName": "C:\\Users\\kawaz\\Documents\\GitHub\\WebApp\\MovieBioApp\\MovieBioApp.csproj",
         "projectName": "MovieBioApp",
-        "projectPath": "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\MovieBioApp.csproj",
-        "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin\\Desktop\\6Semester\\SemesterProject6\\MovieBioApp\\obj\\",
+        "projectPath": "C:\\Users\\kawaz\\Documents\\GitHub\\WebApp\\MovieBioApp\\MovieBioApp.csproj",
+        "packagesPath": "C:\\Users\\kawaz\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kawaz\\Documents\\GitHub\\WebApp\\MovieBioApp\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\kawaz\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -56,7 +52,7 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[5.0.17, 5.0.17]"
+              "version": "[5.0.16, 5.0.16]"
             }
           ],
           "frameworkReferences": {
@@ -67,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

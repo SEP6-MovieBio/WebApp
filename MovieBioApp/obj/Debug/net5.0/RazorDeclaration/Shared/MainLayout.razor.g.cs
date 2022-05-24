@@ -13,70 +13,70 @@ namespace MovieBioApp.Shared
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 1 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 2 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 3 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 4 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 5 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 6 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 7 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 8 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 9 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using MovieBioApp;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\Users\Kevin\Desktop\6Semester\SemesterProject6\MovieBioApp\_Imports.razor"
+#line 10 "C:\Users\kawaz\Documents\GitHub\WebApp\MovieBioApp\_Imports.razor"
 using MovieBioApp.Shared;
 
 #line default
