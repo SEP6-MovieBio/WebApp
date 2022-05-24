@@ -1,6 +1,60 @@
 ﻿@page "/Top200Directors"
-<h3>Top200Directors</h3>
+@using System.Collections
+@using MovieBioApp.Data
+<div class="container paddingRemove">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Top 200 Directors</h3>
+        </div>
+        
+    </div>
+    <div class="row rowStyle">
+            <div class="col-md-2">First Name</div>
+            <div class="col-md-2">Last Name</div>
+            <div class="col-md-2">Rating</div>
+            <div class="col-md-2">Age</div>
+            <div class="col-md-2">Top Directed Movie</div>
+            <div class="col-md-2">Picture</div>
+        </div>
+    @for (var i = 0; i < 200; i++)
+        {
+            amountOfDirectors.Add(new Director("TestFirstName", "TestLastName", 7.4, 30, "MovieTitle", "TestUrlPicture"));
+        }
+
+        @foreach (Director director in amountOfDirectors)
+        {
+            <div class="row rowBorder">
+                <div class="col-md-2">
+                    <div>@director.FirstName</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@director.LastName</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@director.Rating</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@director.Age</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@director.TopDirectedMovie</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@director.Picture</div>
+                </div>
+            </div>
+        }
+</div>
+
+
 
 @code {
+    private ArrayList amountOfDirectors = new ArrayList();
+    
     
 }
