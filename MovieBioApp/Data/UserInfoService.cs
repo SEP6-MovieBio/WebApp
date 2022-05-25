@@ -1,7 +1,9 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using MovieBioApp.Models;
 
 namespace MovieBioApp.Data
 {
@@ -21,6 +23,22 @@ namespace MovieBioApp.Data
             }
 
             return userInfo;
+        }
+
+        public async Task<List<Movie>> GetFavoriteMovies(string username)
+        {
+            string path = "https://moviebiodb.azurewebsites.net/User/favoriteMovies?username=" + username;
+            HttpClient client = new HttpClient();
+            List<Movie> favorites = null;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonString = await response.Content.ReadAsStringAsync();
+
+                favorites = JsonSerializer.Deserialize<List<Movie>>(jsonString);
+            }
+
+            return favorites;
         }
 
         public async Task<bool> PostPasswordHash(string user)
