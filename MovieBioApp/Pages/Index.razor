@@ -1,7 +1,49 @@
 ﻿@page "/"
+@using MovieBioApp.Models
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
 
 <h1>Hello, world!</h1>
 
 Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?"/>
+<div class="align-content-center">
+    <div><img src="" alt="Fuck"></div>
+    <div>
+        <h1>Featured Today</h1>
+        @if (featuredMovies != null && featuredMoviesOMDB != null)
+        {
+            @foreach (Movie m in featuredMovies)
+            {
+                <img src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image">
+            }
+        }
+    </div>
+</div>
+
+
+@code {
+    Dictionary<int,OMDbAPIObj> featuredMoviesOMDB;
+    MovieService movieService = new MovieService();
+    List<Movie> featuredMovies;
+    IOMDbAPIService OmDbApiService;
+    protected override async Task OnInitializedAsync()
+    {
+        featuredMovies = new List<Movie>();
+        featuredMoviesOMDB = new Dictionary<int, OMDbAPIObj>();
+        OmDbApiService = new OMDbAPIService();
+        Random random = new Random();
+        int num = 0;
+        char let;
+        for (int i = 0; i < 6; i++)
+        {
+            num = random.Next(0, 26);
+            let = (char) ('a' + num);
+            Movie randomMovie = await movieService.GetMovieByRandChar(let);
+            Decimal d = Decimal.Parse(randomMovie.Year.ToString());
+            featuredMoviesOMDB.Add(randomMovie.MovieId,await OmDbApiService.GetOMDbAPIMovie(randomMovie.MovieTitle,d));
+            featuredMovies.Add(randomMovie);
+        }
+    }
+
+}
