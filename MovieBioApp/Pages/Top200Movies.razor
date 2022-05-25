@@ -1,11 +1,13 @@
 ﻿@page "/Top200Movies"
 @using System.Collections
+@using MovieBioApp.Data
 @using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Models
 
 @inject IMovieService MovieService;
 
-    @if (_top200Movies == null)
+    @if (top20Movies == null)
     {
         <p>
             <em>Loading...</em>
@@ -29,16 +31,16 @@
             </div>
 
                 
-            @foreach (Movie movie in _top200Movies)
+            @foreach (Movie movie in top20Movies)
             {
+                
                 <div class="row rowBorder">
                     <div class="col-md-2">
                         <div>@movie.MovieTitle</div>
                     </div>
                 
-                    <div class="col-m
-d-2">
-                        <div>INSERT GENRE FROM OMDBAPI HERE</div>
+                    <div class="col-md-2">
+                        <div>@movie.Year@*omdbDict[movie.MovieTitle+movie.Year].genre*@</div>
                     </div>
                 
                     <div class="col-md-2">
@@ -46,17 +48,21 @@ d-2">
                     </div>
                 
                     <div class="col-md-2">
-                        <div>@movie.Director</div>
+                        <div>@foreach (string director in movie.Director)
+                             {
+                                 <p>@director</p>
+                             }</div>
                     </div>
                 
                     <div class="col-md-2">
-                        <div>INSERT STARS FROM OMDBAPI HERE</div>
+                        <div>@omdbDict[movie.MovieTitle+movie.Year].actors</div>
                     </div>
                 
                     <div class="col-md-2">
-                        <div>INSERT GENRE FROM OMDBAPI HERE</div>
+                        <div><img src="@omdbDict[movie.MovieTitle+movie.Year].image" alt="No image for this movie" width="100%"></div>
                     </div>
                 </div>
+                
             }
         </div> 
     }
@@ -65,23 +71,31 @@ d-2">
 
 
 @code {
-     List<string> testList = new List<string>();
-    List<MovieReview> reviewTestList = new List<MovieReview>();
-
-    List<Movie> _top200Movies;
-    List<OMDbAPIObj> _omdbMovies;
-
+    string username = "test";
+    List<Movie> top200Movies;
+    List<Movie> top20Movies;
+    IOMDbAPIService OmDbApiService = new OMDbAPIService();
+    Dictionary<string, OMDbAPIObj> omdbDict;
+    MovieService movieInfoService;
+    int amount = 0;
     protected override async Task OnInitializedAsync()
     {
-        _top200Movies = await MovieService.GetTop200Movies();
-
-
-    }
-
-    private ArrayList amountOfMovies = new ArrayList();
-
-    private List<OMDbAPIObj> getOMDBMovies()
-    {
-        return _omdbMovies;
+        top200Movies = new List<Movie>();
+        MovieService = new MovieService();
+        omdbDict = new Dictionary<string, OMDbAPIObj>();
+        top200Movies = await MovieService.GetTop200Movies();
+        top20Movies = new List<Movie>();
+        
+        foreach (Movie movie in top200Movies)
+        {
+            if (amount % 10 == 0)
+            {
+                omdbDict.Add(movie.MovieTitle+movie.Year, await OmDbApiService.GetOMDbAPIMovie(movie.MovieTitle, movie.Year));
+                top20Movies.Add(movie);
+                //HUSK AT LAVE ET VIEW I DATABASEN SÅDAN AT DU IKKE BEHØVER AT KALDE APIEN 200 GANGE
+            }
+            amount++;
+        }
+        
     }
 }

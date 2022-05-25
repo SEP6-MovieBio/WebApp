@@ -1,4 +1,4 @@
-﻿@page "/MoviePage"
+﻿@page "/SurpriseMoviePage"
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Models
@@ -182,18 +182,22 @@
     List<string> _omDbActors;
     List<string> _omDbDirectors;
     List<string> _omDbGenre;
-
-    int idToBeSet = 15414;
     
     protected override async Task OnInitializedAsync()
     {
-        _movie = await MovieService.GetMovieById(15414);
+        _movie = await MovieService.GetMovieByRandChar(RandomChar());
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
         
         _omDbActors = _omDbApiObj.actors.Split(new char[] {','}).ToList();
         _omDbDirectors = _omDbApiObj.directors.Split(new char[] {','}).ToList();
         _omDbGenre = _omDbApiObj.genre.Split(new char[] {','}).ToList();
+    }
+
+    private static char RandomChar(){
+        Random rnd = new Random();
+        char randomChar = (char)rnd.Next('a','z');
+        return randomChar;
     }
 
     private void SaveReview()
