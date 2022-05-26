@@ -3,21 +3,20 @@
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
 
 <div class="align-content-center">
     <div><img src="" alt="Fuck"></div>
     <div>
-        <h1>Featured Today</h1>
+        <h3>Featured Today</h3>
+        <div>
         @if (featuredMovies != null && featuredMoviesOMDB != null)
         {
             @foreach (Movie m in featuredMovies)
             {
-                <img src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image">
+                <a href="MoviePage" ><img src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image" width="10%"></a>
             }
         }
+        </div>
     </div>
 </div>
 
@@ -45,5 +44,7 @@ Welcome to your new app.
             featuredMovies.Add(randomMovie);
         }
     }
+    
+    
 
 }
