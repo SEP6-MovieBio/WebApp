@@ -1,6 +1,7 @@
 ﻿
 using System.Threading.Tasks;
 using MovieBioApp.Data;
+using MovieBioApp.Data.UserService;
 
 namespace MovieBioApp.Controllers
 {
@@ -8,7 +9,7 @@ namespace MovieBioApp.Controllers
     {
         public string username { get; set; }
         public UserInfo UserInfo { get; set; }
-        public UserInfoService Service { get; set; }
+        public IUserInfoService Service { get; set; }
 
         public UserHandler(string username)
         {

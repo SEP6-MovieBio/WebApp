@@ -2,6 +2,11 @@
 @using MovieBioApp.Controllers
 @using MovieBioApp.Data
 @using System.Text.Json
+@using MovieBioApp.Data.UserService
+@using MovieBioApp.Models
+@inject IUserInfoService UserInfoService;
+
+
 <h3>UserProfile</h3>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,13 +103,16 @@
     string password,confirmPassword = "";
     string biography = "";
     UserInfo Handler;
-    UserInfoService Service = new UserInfoService();
+    //UserInfoService Service = new UserInfoService();
+
+
+    string newPassword;
+    
 
     protected override async Task OnInitializedAsync()
     {
         
-        Handler = await Service.GetUserInfoRest(username);
-        
+        Handler = await UserInfoService.GetUserInfoRest(username);
     }
 
     public async Task<bool> submitChangePassword()
@@ -112,7 +120,7 @@
         if (password == confirmPassword)
         {
             
-            return await Service.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString())));
+            return await UserInfoService.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString(),1)));
         }
         else
         {
@@ -123,7 +131,7 @@
     public async Task<bool> submitChangebio()
     {
         
-        return await Service.Postbio(JsonSerializer.Serialize(Handler));
+        return await UserInfoService.Postbio(JsonSerializer.Serialize(Handler));
     }
 
     public void changebio()

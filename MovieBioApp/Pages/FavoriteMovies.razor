@@ -2,7 +2,13 @@
 @using System.Collections
 @using MovieBioApp.Data
 @using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
+
+@inject IUserInfoService UserInfoService;
+
+
+
 <div class="container paddingRemove">
     <div class="row">
         <div class="col-md-12">
@@ -68,12 +74,12 @@
     List<Movie> favoriteMovies;
     IOMDbAPIService OmDbApiService = new OMDbAPIService();
     Dictionary<string, OMDbAPIObj> omdbDict;
-    UserInfoService UserInfoService;
+    //UserInfoService UserInfoService;
 
     protected override async Task OnInitializedAsync()
     {
         favoriteMovies = new List<Movie>();
-        UserInfoService = new UserInfoService();
+        //UserInfoService = new UserInfoService();
         omdbDict = new Dictionary<string, OMDbAPIObj>();
         favoriteMovies = await UserInfoService.GetFavoriteMovies(username);
         foreach (Movie m in favoriteMovies)
