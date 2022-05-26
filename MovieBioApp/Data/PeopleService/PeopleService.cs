@@ -11,6 +11,7 @@ namespace MovieBioApp.Data.PeopleService
     public class PeopleService : IPeopleService
     {
         private string uri = "https://moviebiodb.azurewebsites.net/Director/";
+        private string uriForActors = "https://moviebiodb.azurewebsites.net/Actor/";
 
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
@@ -26,6 +27,16 @@ namespace MovieBioApp.Data.PeopleService
             Task<string> info = client.GetStringAsync(uri + "top20Directors");
             string message = await info;
             List<Director> result = JsonSerializer.Deserialize<List<Director>>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            
+            return result;  
+        }
+        
+        public async Task<List<Actor>> GetTop20Actors()
+        {
+            Task<string> info = client.GetStringAsync(uriForActors + "top20Actors");
+            string message = await info;
+            List<Actor> result = JsonSerializer.Deserialize<List<Actor>>(message);
             Console.WriteLine(JsonSerializer.Serialize(result));
             
             return result;  

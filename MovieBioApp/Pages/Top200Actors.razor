@@ -1,6 +1,17 @@
 ﻿@page "/Top200Actors"
 @using System.Collections
 @using MovieBioApp.Data
+@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.TMDBAPI
+@using MovieBioApp.Models.ClassesToReadJson
+@if (top20Actors == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+else
+{
 <div class="container paddingRemove">
     <div class="row">
         <div class="col-md-12">
@@ -8,30 +19,18 @@
         </div>
     </div>
     <div class="row rowStyle">
-        <div class="col-md-2">First Name</div>
-        <div class="col-md-2">Last Name</div>
+        <div class="col-md-4">Name</div>
         <div class="col-md-2">Rating</div>
         <div class="col-md-2">Age</div>
-        <div class="col-md-2">Top Movie Starred In</div>
+        <div class="col-md-2">Known For</div>
         <div class="col-md-2">Picture</div>
     </div>
-    
-    @for (var i = 0; i < 200; i++)
-        {
-            amountOfActors.Add(new Actor("TestFirstName", "TestLastName", 7.4, 30, "MovieTitle", "TestUrlPicture"));
-        }
-
-        @foreach (Actor actor in amountOfActors)
+    @foreach (Actor actor in top200Actors)
         {
             <div class="row rowBorder">
-                <div class="col-md-2">
-                    <div>@actor.FirstName</div>
+                <div class="col-md-4">
+                    <div>@actor.Name</div>
                 </div>
-
-                <div class="col-md-2">
-                    <div>@actor.LastName</div>
-                </div>
-
                 <div class="col-md-2">
                     <div>@actor.Rating</div>
                 </div>
@@ -41,20 +40,48 @@
                 </div>
 
                 <div class="col-md-2">
-                    <div>@actor.TopMovieStarredIn</div>
+                    <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[actor.id].results[0].known_for[0].poster_path" alt="No image for this movie" width="100%"></div>
                 </div>
 
                 <div class="col-md-2">
-                    <div>@actor.Picture</div>
+                    <div><img src="@tmdbapiObj[actor.id].results[0].profile_path" alt="No image for this Actor" width="100%"></div>
                 </div>
             </div>
         }
 </div>
+}
 
 
 
 @code {
-    private ArrayList amountOfActors = new ArrayList();
+    string username = "test";
+    List<Actor> top200Actors;
+    List<Actor> top20Actors;
+    ITMDBAPI TMDBAPI = new TMDBAPI();
+    Dictionary<int, Result> tmdbapiObj;
+    IPeopleService peopleService;
+    int amount = 0;
+    protected override async Task OnInitializedAsync()
+    {
+        top200Actors = new List<Actor>();
+        peopleService = new PeopleService();
+        tmdbapiObj = new Dictionary<int, Result>();
+        top200Actors = await peopleService.GetTop20Actors();
+        top20Actors = new List<Actor>();
+        
+        foreach (Actor actor in top200Actors)
+        {
+    //if (amount % 10 == 0)
+            {
+                tmdbapiObj.Add(actor.id, await TMDBAPI.GetPersonById(actor.Name));
+                top20Actors.Add(actor);
+    //HUSK AT LAVE ET VIEW I DATABASEN SÅDAN AT DU IKKE BEHØVER AT KALDE APIEN 200 GANGE
+            }
+            amount++;
+        }
+        
+
+    }    
     
     
 }

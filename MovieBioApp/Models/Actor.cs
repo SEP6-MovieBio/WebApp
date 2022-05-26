@@ -1,21 +1,29 @@
-﻿namespace MovieBioApp.Data
+﻿using System.Text.Json.Serialization;
+
+namespace MovieBioApp.Data
 {
     public class Actor
     {
-        public  string FirstName { get; set; }
-        public  string LastName { get; set; }
+        [JsonPropertyName("id")]
+        public int id { get; set; }
+        [JsonPropertyName("name")]
+        public  string Name { get; set; }
+        [JsonPropertyName("rating")]
         public  double Rating { get; set; }
+        [JsonPropertyName("age")]
         public  int Age { get; set; }
-        public  string TopMovieStarredIn { get; set; }
+        [JsonPropertyName("knownFor")]
+        public  string KnownFor { get; set; }
+        [JsonPropertyName("picture")]
         public string Picture { get; set; }
     
-        public Actor(string firstName, string lastName, double rating, int age, string topMovieStarredIn, string picture)
+        public Actor(int id = 0, string name = null, double rating = 0, int age = 0, string knownFor = null, string picture = null)
         {
-            FirstName = firstName;
-            LastName = lastName;
+            this.id = id;
+            Name = name;
             Rating = rating;
             Age = age;
-            TopMovieStarredIn = topMovieStarredIn;
+            KnownFor = knownFor;
             Picture = picture;
         }
     }
