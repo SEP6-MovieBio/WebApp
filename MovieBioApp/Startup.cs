@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using MovieBioApp.Data;
 using MovieBioApp.Data.MovieService;
 using MovieBioApp.Data.OMDbAPI;
+using MovieBioApp.Data.PeopleService;
 using MovieBioApp.Models;
 
 namespace MovieBioApp
@@ -34,6 +35,8 @@ namespace MovieBioApp
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<IOMDbAPIService, OMDbAPIService>();
+            services.AddSingleton<IPeopleService, PeopleService>();
+
 
         }
 
