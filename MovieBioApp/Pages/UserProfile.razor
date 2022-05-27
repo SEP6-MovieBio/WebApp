@@ -30,7 +30,7 @@
            
             if (Handler != null)
             {
-                <textarea id="bioTextArea" @bind="Handler.biography" rows="10" cols="30"></textarea>
+                <textarea id="bioTextArea" @bind="Handler.Biography" rows="10" cols="30"></textarea>
             }
             else
             {
@@ -60,13 +60,13 @@
     
     if (Handler != null)
     {
-        if (Handler.emailIsHidden)
+        if (Handler.EmailIsHidden)
         {
             email = "Email is hidden";
         }
         else
         {
-            email = Handler.email;
+            email = Handler.Email;
         }
     }
 }
@@ -76,13 +76,13 @@
     
     if (Handler != null)
     {
-        if (Handler.phoneIsHidden)
+        if (Handler.PhoneIsHidden)
         {
             phone = "Phone number is hidden";
         }
         else
         {
-            phone = Handler.phoneNumber;
+            phone = Handler.PhoneNumber;
         }
     }
 }
@@ -120,7 +120,8 @@
         if (password == confirmPassword)
         {
             
-            return await UserInfoService.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString(),1)));
+            //return await UserInfoService.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString(),1)));
+            return await UserInfoService.PostPasswordHashString(username,password);
         }
         else
         {
@@ -136,7 +137,7 @@
 
     public void changebio()
     {
-        Handler.biography = biography;
+        Handler.Biography = biography;
     }
 
     public async Task<bool> cancelPassword()

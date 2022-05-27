@@ -1,4 +1,7 @@
-﻿namespace MovieBioApp.Data
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+
+namespace MovieBioApp.Data
 {
     public class UserInfo : Models.User
     {
@@ -27,11 +30,20 @@
         */
         
         //public string username { get; set; }
-        public string phoneNumber { get; set; }
-        public bool phoneIsHidden { get; set; }
-        public string email { get; set; }
-        public bool emailIsHidden { get; set; }
-        public string biography { get; set; }
+        [JsonPropertyName("PhoneNumber")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Only numbers for your phonenumber")]
+
+        public string PhoneNumber { get; set; }
+        
+        [JsonPropertyName("PhoneIsHidden")]
+        public bool PhoneIsHidden { get; set; }
+        [JsonPropertyName("Email")]
+        public string Email { get; set; }
+        [Required]
+        [JsonPropertyName("EmailIsHidden")]
+        public bool EmailIsHidden { get; set; }
+        [JsonPropertyName("Biography")]
+        public string Biography { get; set; }
         
     }
 }

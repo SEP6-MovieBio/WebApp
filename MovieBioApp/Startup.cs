@@ -39,7 +39,12 @@ namespace MovieBioApp
             services.AddSingleton<IOMDbAPIService, OMDbAPIService>();
             services.AddSingleton<IUserInfoService, UserInfoService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
-
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("LoggedInUser", a =>
+                    a.RequireAuthenticatedUser().RequireClaim("SecurityLevel", "1"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

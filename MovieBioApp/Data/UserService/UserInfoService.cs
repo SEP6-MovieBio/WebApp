@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -11,11 +12,14 @@ namespace MovieBioApp.Data.UserService
     public class UserInfoService : IUserInfoService
     {
         
-        private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
-        private string userUri = "https://moviebiodb.azurewebsites.net/User/";
+        
+        //private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
+        //private string userUri = "https://moviebiodb.azurewebsites.net/User/";
 
-        //private string uri = "https://localhost:5002/MovieInfo/";
-
+        //private string uri = "https://localhost:5003/MovieInfo/";
+        private string userInfoUri = "https://localhost:5003/userinfo/";
+        private string userUri = "https://localhost:5003/User/";
+        
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
 
@@ -91,6 +95,31 @@ namespace MovieBioApp.Data.UserService
             User result = JsonSerializer.Deserialize<User>(message);
 
             return result;        
+        }
+
+
+
+        public async Task PostCreateUser(UserInfo userInfo)
+        {
+            string path = $"{userUri}postUser";
+            
+            string userJson = JsonSerializer.Serialize(userInfo);
+            HttpContent content = new StringContent(userJson, Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage responseMessage = await client.PostAsync(path, content);
+            if (responseMessage.StatusCode == HttpStatusCode.Created)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Enter new information");
+            }
+        }
+        
+        public Task<bool> PostPasswordHashString(string username, string password)
+        {
+            throw new NotImplementedException();
         }
     }
 }

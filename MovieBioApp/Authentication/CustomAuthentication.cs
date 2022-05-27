@@ -68,10 +68,17 @@ namespace MovieBioApp.Authentication
         
         private ClaimsIdentity SetupClaimsForUser(User user) {
             List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Name, user.username));
-            claims.Add(new Claim("Level", user.securityLevel.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, user.Username));
+            claims.Add(new Claim("SecurityLevel", user.SecurityLevel.ToString()));
             ClaimsIdentity identity = new ClaimsIdentity(claims, "apiauth_type");
             return identity;
+        }
+        
+        public void Logout() {
+            cachedUser = null;
+            var user = new ClaimsPrincipal(new ClaimsIdentity());
+            jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
+            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
 
 
