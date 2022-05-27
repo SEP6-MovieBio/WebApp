@@ -8,12 +8,11 @@ namespace MovieBioApp.Data.UserService
     {
         Task<UserInfo> GetUserInfoRest(string username);
         Task<List<Movie>> GetFavoriteMovies(string username);
-        Task<bool> PostPasswordHash(string user);
+        Task<bool> PostPasswordHash(UserInfo user);
         Task<bool> Postbio(string userinfo);
 
-        //Testing
         Task<User> GetValidatedUser(string username, string password);
-        Task<bool> PostPasswordHashString(string username, string password);
+        //Task<bool> PostPasswordHashString(string username, string password);
         Task PostCreateUser(UserInfo userInfo);
     }
 }

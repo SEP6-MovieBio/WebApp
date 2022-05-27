@@ -2,6 +2,7 @@
 @using MovieBioApp.Controllers
 @using MovieBioApp.Data
 @using System.Text.Json
+@using MovieBioApp.Authentication
 @using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 @inject IUserInfoService UserInfoService;
@@ -28,9 +29,9 @@
         <h1>Bio</h1>
         @{
            
-            if (Handler != null)
+            if (_userInfo != null)
             {
-                <textarea id="bioTextArea" @bind="Handler.Biography" rows="10" cols="30"></textarea>
+                <textarea id="bioTextArea" @bind="_userInfo.Biography" rows="10" cols="30"></textarea>
             }
             else
             {
@@ -38,55 +39,55 @@
             }
         }
         
-        <button id="bioButton" @onclick="submitChangebio">Update bio</button>
+        <button id="bioButton" @onclick="SubmitChangebio">Update bio</button>
     </div>
     <div class="col-auto border-right-20">
         <div>
             <h1>Your Password</h1>
-            <input type="text" @bind="password" id="passwordField">
+            <input type="text" @bind="_password" id="passwordField">
         </div>
         <div>
             <h1>Confirm password</h1>
-            <input type="text" @bind="confirmPassword" id="confirmPasswordField">
+            <input type="text" @bind="_confirmPassword" id="confirmPasswordField">
         </div>
         <div class="col-auto border-bottom-20">
-            <button @onclick="submitChangePassword" class="btn-success mr-5">Submit</button>
-            <button @onclick="cancelPassword" class="btn-danger">Cancel</button>
+            <button @onclick="SubmitChangePassword" class="btn-success mr-5">Submit</button>
+            <button @onclick="CancelPassword" class="btn-danger">Cancel</button>
         </div>
     </div>
 </div>
 <h1>Email</h1>
 @{
     
-    if (Handler != null)
+    if (_userInfo != null)
     {
-        if (Handler.EmailIsHidden)
+        if (_userInfo.EmailIsHidden)
         {
-            email = "Email is hidden";
+            _email = "Email is hidden";
         }
         else
         {
-            email = Handler.Email;
+            _email = _userInfo.Email;
         }
     }
 }
-<p>@email</p>
+<p>@_email</p>
 <h1>Phone</h1>
 @{
     
-    if (Handler != null)
+    if (_userInfo != null)
     {
-        if (Handler.PhoneIsHidden)
+        if (_userInfo.PhoneIsHidden)
         {
-            phone = "Phone number is hidden";
+            _phone = "Phone number is hidden";
         }
         else
         {
-            phone = Handler.PhoneNumber;
+            _phone = _userInfo.PhoneNumber;
         }
     }
 }
-<p class="border-bottom-20">@phone</p>
+<p class="border-bottom-20">@_phone</p>
 <h1 class="justify-content-end">Favorite movies</h1>
 <div>
     <h1>Niceness ratio</h1>
@@ -97,53 +98,54 @@
 
 </html>
 @code {
-    string username = "test";
-    string email = "";
-    string phone = "";
-    string password,confirmPassword = "";
-    string biography = "";
-    UserInfo Handler;
-    //UserInfoService Service = new UserInfoService();
-
-
-    string newPassword;
     
+    UserInfo _userInfo;
+    string _username;
+    
+    string _email = "";
+    string _phone = "";
+    string _password,_confirmPassword = "";
+    string _newPassword;
+    string _biography = "";
 
     protected override async Task OnInitializedAsync()
     {
-        
-        Handler = await UserInfoService.GetUserInfoRest(username);
+        _username = CustomAuthentication.CachedUser.Username;
+        //_userInfo.Password = CustomAuthentication.CachedUser.Password;
+        _userInfo = await UserInfoService.GetUserInfoRest(_username);
+        Console.WriteLine($"Usersame: {_userInfo.Username}, Pass: {_userInfo.Password}, Bio: {_userInfo.Biography}, Mail: {_userInfo.Email}");
     }
 
-    public async Task<bool> submitChangePassword()
+    public async Task<bool> SubmitChangePassword()
     {
-        if (password == confirmPassword)
+        if (_password == _confirmPassword)
         {
-            
+            _userInfo.Password = _password;
+            return await UserInfoService.PostPasswordHash(_userInfo);
             //return await UserInfoService.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString(),1)));
-            return await UserInfoService.PostPasswordHashString(username,password);
+            //return await UserInfoService.PostPasswordHashString(_username,_password);
         }
         else
         {
-            confirmPassword = "Error passwords do not match";
+            _confirmPassword = "Error passwords do not match";
             return false;
         }
     }
-    public async Task<bool> submitChangebio()
+    public async Task<bool> SubmitChangebio()
     {
         
-        return await UserInfoService.Postbio(JsonSerializer.Serialize(Handler));
+        return await UserInfoService.Postbio(JsonSerializer.Serialize(_userInfo));
     }
 
     public void changebio()
     {
-        Handler.Biography = biography;
+        _userInfo.Biography = _biography;
     }
 
-    public async Task<bool> cancelPassword()
+    public async Task<bool> CancelPassword()
     {
-        password = "";
-        confirmPassword = "";
+        _password = "";
+        _confirmPassword = "";
         return true;
     }
 

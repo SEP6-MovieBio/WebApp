@@ -14,33 +14,33 @@ namespace MovieBioApp.Authentication
 {
     public class CustomAuthentication : AuthenticationStateProvider
     {
-        private readonly IJSRuntime jsRuntime;
-        private readonly IUserInfoService userService;
+        private readonly IJSRuntime _jsRuntime;
+        private readonly IUserInfoService _userService;
 
-        private User cachedUser;
+        public static User CachedUser;
 
         public CustomAuthentication(IJSRuntime jsRuntime, IUserInfoService userService)
         {
-            this.jsRuntime = jsRuntime;
-            this.userService = userService;
+            this._jsRuntime = jsRuntime;
+            this._userService = userService;
         }
 
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             var identity = new ClaimsIdentity();
-            if (cachedUser == null)
+            if (CachedUser == null)
             {
-                string userAsJson = await jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
+                string userAsJson = await _jsRuntime.InvokeAsync<string>("sessionStorage.getItem", "currentUser");
                 if (!string.IsNullOrEmpty(userAsJson))
                 {
-                    cachedUser = JsonSerializer.Deserialize<User>(userAsJson);
-                    identity = SetupClaimsForUser(cachedUser);
+                    CachedUser = JsonSerializer.Deserialize<User>(userAsJson);
+                    identity = SetupClaimsForUser(CachedUser);
                 }
             }
             else
             {
-                identity = SetupClaimsForUser(cachedUser);
+                identity = SetupClaimsForUser(CachedUser);
             }
 
             ClaimsPrincipal cachedClaimsPrincipal = new ClaimsPrincipal(identity);
@@ -54,12 +54,12 @@ namespace MovieBioApp.Authentication
             
             ClaimsIdentity identity = new ClaimsIdentity();
             try {
-                User user = await userService.GetValidatedUser(username, password);
+                User user = await _userService.GetValidatedUser(username, password);
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
-                jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
-                cachedUser = user;
+                _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
                 Console.WriteLine($"User logged is: {user.Username} and {user.Password} and {user.SecurityLevel}");
+                CachedUser = user;
 
             } catch (Exception e) {
                 throw e;
@@ -77,9 +77,9 @@ namespace MovieBioApp.Authentication
         }
         
         public void Logout() {
-            cachedUser = null;
+            CachedUser = null;
             var user = new ClaimsPrincipal(new ClaimsIdentity());
-            jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
+            _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", "");
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(user)));
         }
 

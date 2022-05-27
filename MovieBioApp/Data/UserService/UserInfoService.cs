@@ -31,17 +31,11 @@ namespace MovieBioApp.Data.UserService
         
         public async Task<UserInfo> GetUserInfoRest(string username)
         {
-            string path = userInfoUri +"userinfo?username=" + username;
-            UserInfo userInfo = null;
-            HttpResponseMessage response = await client.GetAsync(path);
-            if (response.IsSuccessStatusCode)
-            {
-                string jsonString = await response.Content.ReadAsStringAsync();
+            Task<string> path = client.GetStringAsync(userInfoUri +"?username=" + username);
+            string message = await path;
+            UserInfo result = JsonSerializer.Deserialize<UserInfo>(message);
 
-                userInfo = JsonSerializer.Deserialize<UserInfo>(jsonString);
-            }
-
-            return userInfo;
+            return result;
         }
 
         public async Task<List<Movie>> GetFavoriteMovies(string username)
@@ -59,10 +53,12 @@ namespace MovieBioApp.Data.UserService
             return favorites;
         }
 
-        public async Task<bool> PostPasswordHash(string user)
+        public async Task<bool> PostPasswordHash(UserInfo user)
         {
             string path = userUri + "postHash";
-            HttpContent content = new StringContent(user,Encoding.UTF8, 
+            string userJson = JsonSerializer.Serialize(user);
+
+            HttpContent content = new StringContent(userJson,Encoding.UTF8, 
                 "application/json");
             HttpResponseMessage response = await client.PostAsync(path,content);
             if (response.IsSuccessStatusCode)
@@ -97,8 +93,6 @@ namespace MovieBioApp.Data.UserService
             return result;        
         }
 
-
-
         public async Task PostCreateUser(UserInfo userInfo)
         {
             string path = $"{userUri}postUser";
@@ -117,10 +111,6 @@ namespace MovieBioApp.Data.UserService
             }
         }
         
-        public Task<bool> PostPasswordHashString(string username, string password)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
