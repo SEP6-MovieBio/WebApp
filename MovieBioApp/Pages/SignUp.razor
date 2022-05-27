@@ -37,6 +37,7 @@
 
     public void SubmitUser()
     {
+        _userInfo.SecurityLevel = 1;
         UserInfoService.PostCreateUser(_userInfo);
 
         NavigationManager.NavigateTo("/UserProfile");
@@ -44,7 +45,6 @@
 
     protected override async Task OnInitializedAsync() {
         _userInfo = new UserInfo();
-        _userInfo.SecurityLevel = 1;
     }
 
 
