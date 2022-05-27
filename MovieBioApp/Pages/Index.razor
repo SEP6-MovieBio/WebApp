@@ -2,6 +2,7 @@
 @using MovieBioApp.Models
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
+@inject NavigationManager UriHelper
 
 
 <div class="align-content-center">
@@ -13,7 +14,7 @@
         {
             @foreach (Movie m in featuredMovies)
             {
-                <a href="MoviePage" ><img src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image" width="10%"></a>
+                <img @onclick="@(e => imageclicked(m.MovieId))" src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image" width="10%">
             }
         }
         </div>
@@ -43,6 +44,11 @@
             featuredMoviesOMDB.Add(randomMovie.MovieId,await OmDbApiService.GetOMDbAPIMovie(randomMovie.MovieTitle,d));
             featuredMovies.Add(randomMovie);
         }
+    }
+
+    void imageclicked(int id)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ id);
     }
     
     

@@ -1,4 +1,4 @@
-﻿@page "/MoviePage"
+﻿@page "/MoviePage/{idToBeSet}"
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Models
@@ -174,6 +174,9 @@
 </html>
 
 @code {
+    [Parameter]
+    public string? idToBeSet { get; set; }
+    
     string _reviewTextfield;
     float _reviewRating;
 
@@ -183,11 +186,9 @@
     List<string> _omDbDirectors;
     List<string> _omDbGenre;
 
-    int idToBeSet = 15414;
-    
     protected override async Task OnInitializedAsync()
     {
-        _movie = await MovieService.GetMovieById(15414);
+        _movie = await MovieService.GetMovieById(Int32.Parse(idToBeSet));
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
         
