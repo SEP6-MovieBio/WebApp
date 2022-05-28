@@ -9,6 +9,7 @@
 
 
 <h3>UserProfile</h3>
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
     <link href="css/starSystem.css" rel="stylesheet">
 </head>
 <body>
-
+-->
 <div class="row justify-content-start p-3">
     <img src="https://foundrmeet.com/wp-content/themes/cera/assets/images/avatars/user-avatar.png" class="col-auto rounded-circle" alt="profile picture">
     <div class="col-auto">
@@ -94,13 +95,19 @@
     <div class="stars" style="--w: 40%;"></div>
 </div>
 
+<!--
 </body>
 
 </html>
+-->
 @code {
     
     UserInfo _userInfo;
     string _username;
+    
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+    
     
     string _email = "";
     string _phone = "";
@@ -110,10 +117,19 @@
 
     protected override async Task OnInitializedAsync()
     {
-        _username = CustomAuthentication.CachedUser.Username;
-        //_userInfo.Password = CustomAuthentication.CachedUser.Password;
-        _userInfo = await UserInfoService.GetUserInfoRest(_username);
-        Console.WriteLine($"Usersame: {_userInfo.Username}, Pass: {_userInfo.Password}, Bio: {_userInfo.Biography}, Mail: {_userInfo.Email}");
+        //_username = CustomAuthentication.CachedUser.Username;
+        var authState = await authenticationStateTask;
+        var user = authState.User; 
+        
+        if (user.Identity.IsAuthenticated)
+        {
+            _userInfo = await UserInfoService.GetUserInfoRest(user.Identity.Name);
+        }
+        else
+        {
+            Console.WriteLine("The user is NOT authenticated.");
+        }
+        
     }
 
     public async Task<bool> SubmitChangePassword()
@@ -122,8 +138,6 @@
         {
             _userInfo.Password = _password;
             return await UserInfoService.PostPasswordHash(_userInfo);
-            //return await UserInfoService.PostPasswordHash(JsonSerializer.Serialize(new User(username, password.GetHashCode().ToString(),1)));
-            //return await UserInfoService.PostPasswordHashString(_username,_password);
         }
         else
         {

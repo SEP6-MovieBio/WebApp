@@ -34,13 +34,16 @@
 @code {
     
     private UserInfo _userInfo;
+    
+        
 
     public void SubmitUser()
     {
         _userInfo.SecurityLevel = 1;
         UserInfoService.PostCreateUser(_userInfo);
 
-        NavigationManager.NavigateTo("/UserProfile");
+        //NavigationManager.NavigateTo("/MoviePage");
+
     }
 
     protected override async Task OnInitializedAsync() {

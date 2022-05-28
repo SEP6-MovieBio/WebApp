@@ -14,26 +14,27 @@
             <ul class="navbar-nav searchBar">
 
                 <AuthorizeView Policy="LoggedInUser">
-                    <div class="dropdown">
-                        <div class="btn profileButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="profileIcon" alt="user" src="Icons/HumanIcon.png">
-                        </div>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="UserProfile">My Profile</a>
-                            <a class="dropdown-item" href="FavoriteMovies">My Favorites</a>
-                            <a class="dropdown-item" @onclick="PerformLogout">LogOut</a>
+                    <Authorized>
+                        <div class="dropdown">
+                            <div class="btn profileButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="profileIcon" alt="user" src="Icons/HumanIcon.png">
+                            </div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="UserProfile">My Profile</a>
+                                <a class="dropdown-item" href="FavoriteMovies">My Favorites</a>
+                                <a class="dropdown-item" @onclick="PerformLogout">LogOut</a>
 
-                            @*<div class="dropdown-divider"></div>
+                                @*<div class="dropdown-divider"></div>
                                        <a class="dropdown-item" href="Settings">Settings</a>*@
+                            </div>
                         </div>
-                    </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a href="SignUp">SignUp</a>
+                        <a href="Login">Log in</a>
+
+                    </NotAuthorized>
                 </AuthorizeView>
-                <NotAuthorized>
-                    <a href="SignUp">SignUp</a>
-                    <a href="Login">Log in</a>
-
-                </NotAuthorized>
-
 
             </ul>
             <ul class="navbar-nav flex-grow-1 searchBar">

@@ -1,7 +1,6 @@
 ﻿@page "/LogIn"
 @using MovieBioApp.Authentication
 @inject AuthenticationStateProvider AuthenticationStateProvider
-@inject NavigationManager NavigationManager
 
 
 <h3>LogIn</h3>
@@ -36,6 +35,7 @@
             await ((CustomAuthentication) AuthenticationStateProvider).ValidateLogin(_username, _password);
             _username = "";
             _password = "";
+
         }
         catch (Exception e)
         {

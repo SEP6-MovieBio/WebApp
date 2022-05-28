@@ -136,31 +136,44 @@
 
                 </div>
 
-                <div class="col-sm-6">
-                    <h3>
-                        <strong>Write your review</strong>
-                    </h3>
-                    <div class="form-outline">
-                        <textarea class="form-control" id="@_reviewTextfield" rows="4"></textarea>
-                        <select>
-                            <option value=”@_reviewRating”>1</option>
-                            <option value=”@_reviewRating”>2</option>
-                            <option value=”@_reviewRating”>3</option>
-                            <option value=”@_reviewRating”>4</option>
-                            <option value=”@_reviewRating”>5</option>
-                            <option value=”@_reviewRating”>6</option>
-                            <option value=”@_reviewRating”>7</option>
-                            <option value=”@_reviewRating”>8</option>
-                            <option value=”@_reviewRating”>9</option>
-                            <option value=”@_reviewRating”>10</option>
+                <AuthorizeView>
+                    <Authorized>
+                        <div class="col-sm-6">
+                            <h3>
+                                <strong>Write your review</strong>
+                            </h3>
+                            <div class="form-outline">
+                                <textarea class="form-control" id="@_reviewTextfield" rows="4"></textarea>
+                                <select>
+                                    <option value=”@_reviewRating”>1</option>
+                                    <option value=”@_reviewRating”>2</option>
+                                    <option value=”@_reviewRating”>3</option>
+                                    <option value=”@_reviewRating”>4</option>
+                                    <option value=”@_reviewRating”>5</option>
+                                    <option value=”@_reviewRating”>6</option>
+                                    <option value=”@_reviewRating”>7</option>
+                                    <option value=”@_reviewRating”>8</option>
+                                    <option value=”@_reviewRating”>9</option>
+                                    <option value=”@_reviewRating”>10</option>
 
-                        </select>
-                        <br>
-                        <button @onclick="(() => SaveReview())">Submit review</button>
-                    </div>
+                                </select>
+                                <br>
+                                <button @onclick="(() => SaveReview())">Submit review</button>
+                            </div>
 
 
-                </div>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <div class="col-sm-6">
+                            <h3>
+                                <strong>Log in or signup to write your own review!</strong>
+                            </h3>
+
+                        </div>
+                    </NotAuthorized>
+                </AuthorizeView>
+
 
             </div>
 
@@ -182,21 +195,29 @@
     List<string> _omDbActors;
     List<string> _omDbDirectors;
     List<string> _omDbGenre;
-    
+
     protected override async Task OnInitializedAsync()
     {
         _movie = await MovieService.GetMovieByRandChar(RandomChar());
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
-        
-        _omDbActors = _omDbApiObj.actors.Split(new char[] {','}).ToList();
-        _omDbDirectors = _omDbApiObj.directors.Split(new char[] {','}).ToList();
-        _omDbGenre = _omDbApiObj.genre.Split(new char[] {','}).ToList();
+
+        if (string.IsNullOrEmpty(_omDbApiObj.actors) || string.IsNullOrEmpty(_omDbApiObj.directors) || string.IsNullOrEmpty(_omDbApiObj.genre))
+        {
+            _omDbActors.Add("No actors to show");
+            _omDbDirectors.Add("No directors to show");
+            _omDbGenre.Add("No genre to show");
+
+        }
+        _omDbActors = _omDbApiObj.actors.Split(new char[] { ',' }).ToList();
+        _omDbDirectors = _omDbApiObj.directors.Split(new char[] { ',' }).ToList();
+        _omDbGenre = _omDbApiObj.genre.Split(new char[] { ',' }).ToList();
     }
 
-    private static char RandomChar(){
+    private static char RandomChar()
+    {
         Random rnd = new Random();
-        char randomChar = (char)rnd.Next('a','z');
+        char randomChar = (char)rnd.Next('a', 'z');
         return randomChar;
     }
 
