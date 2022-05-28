@@ -57,7 +57,6 @@ namespace MovieBioApp.Authentication
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
                 _jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);
-                //Console.WriteLine($"User logged is: {user.Username} and {user.Password} and {user.SecurityLevel}");
                 CachedUser = user;
 
             } catch (Exception e) {

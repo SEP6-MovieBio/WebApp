@@ -3,8 +3,10 @@
 @using MovieBioApp.Data.UserService
 @using System.Security.Cryptography
 @using System.Text
+@using MovieBioApp.Authentication
 @inject IUserInfoService UserInfoService
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
 
 <h3>SignUp</h3>
@@ -37,12 +39,13 @@
     
         
 
-    public void SubmitUser()
+    public  async void SubmitUser()
     {
         _userInfo.SecurityLevel = 1;
-        UserInfoService.PostCreateUser(_userInfo);
+        await UserInfoService.PostCreateUser(_userInfo);
+        await ((CustomAuthentication) AuthenticationStateProvider).ValidateLogin(_userInfo.Username, _userInfo.Password);
 
-        //NavigationManager.NavigateTo("/MoviePage");
+        NavigationManager.NavigateTo("/UserProfile");
 
     }
 

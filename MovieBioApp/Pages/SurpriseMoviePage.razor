@@ -135,31 +135,38 @@
 
 
                 </div>
-
-                <AuthorizeView>
+ <AuthorizeView Context="AuthorizeContext">
                     <Authorized>
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <h3>
                                 <strong>Write your review</strong>
                             </h3>
-                            <div class="form-outline">
-                                <textarea class="form-control" id="@_reviewTextfield" rows="4"></textarea>
-                                <select>
-                                    <option value=”@_reviewRating”>1</option>
-                                    <option value=”@_reviewRating”>2</option>
-                                    <option value=”@_reviewRating”>3</option>
-                                    <option value=”@_reviewRating”>4</option>
-                                    <option value=”@_reviewRating”>5</option>
-                                    <option value=”@_reviewRating”>6</option>
-                                    <option value=”@_reviewRating”>7</option>
-                                    <option value=”@_reviewRating”>8</option>
-                                    <option value=”@_reviewRating”>9</option>
-                                    <option value=”@_reviewRating”>10</option>
 
-                                </select>
-                                <br>
-                                <button @onclick="(() => SaveReview())">Submit review</button>
-                            </div>
+
+                            <EditForm Model="@_review" OnValidSubmit="SaveReview">
+                                <DataAnnotationsValidator/>
+                                <ValidationSummary/>
+                                <div class="form-group">
+                                    <p>@_errorMessage</p>
+                                    <textarea class="form-control" placeholder="Description" @bind="_review.ReviewDescription" rows="3"></textarea>
+
+
+                                    <select  @bind="_review.ReviewRating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+
+                                    </select>
+                                    <button class="btn btn-outline-dark" type="submit">Submit</button>
+                                </div>
+                            </EditForm>
 
 
                         </div>
@@ -186,11 +193,17 @@
 </body>
 </html>
 
-@code {
-    string _reviewTextfield;
-    float _reviewRating;
+@code { 
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
 
+    private string _username;
+
+    string _reviewTextfield = "";
+    float _reviewRating;
+    string _errorMessage = "";
     Movie _movie;
+    MovieReview _review;
     OMDbAPIObj _omDbApiObj;
     List<string> _omDbActors;
     List<string> _omDbDirectors;
@@ -198,6 +211,17 @@
 
     protected override async Task OnInitializedAsync()
     {
+        var authState = await authenticationStateTask;
+        _username = authState.User.Identity.Name;
+
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            _review = new MovieReview();
+        }
+        else
+        {
+            Console.WriteLine("The user is NOT authenticated.");
+        }
         _movie = await MovieService.GetMovieByRandChar(RandomChar());
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
@@ -223,9 +247,21 @@
 
     private void SaveReview()
     {
-        if (_reviewRating == null || string.IsNullOrEmpty(_reviewTextfield))
+        _reviewTextfield = _review.ReviewDescription;
+        _reviewRating = _review.ReviewRating;
+
+        if (string.IsNullOrEmpty(_reviewTextfield))
         {
-            Console.WriteLine("Should display error to user");
+            _errorMessage = "Please enter a valid description";
+        }
+
+        else
+        {
+            _review.ReviewDescription = _reviewTextfield;
+            _review.ReviewRating = _reviewRating;
+            _review.ReviewUsername = _username;
+            _review.MovieID = _movie.MovieId;
+            MovieService.PostMovieReview(_review);
         }
     }
 

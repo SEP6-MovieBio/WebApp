@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using MovieBioApp.Data.OMDbAPI;
@@ -10,8 +12,8 @@ namespace MovieBioApp.Data.MovieService
 {
     public class MovieService : IMovieService
     {
-        private string uri = "https://moviebiodb.azurewebsites.net/MovieInfo/";
-        //private string uri = "https://localhost:5002/MovieInfo/";
+        //private string uri = "https://moviebiodb.azurewebsites.net/MovieInfo/";
+        private string uri = "https://localhost:5003/MovieInfo/";
 
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
@@ -48,10 +50,27 @@ namespace MovieBioApp.Data.MovieService
             Task<string> info = client.GetStringAsync(uri + "top200Movies");
             string message = await info;
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
-            Console.WriteLine(JsonSerializer.Serialize(result));
             
             return result;  
         }
-        
+
+        public async Task PostMovieReview(MovieReview review)
+        {
+
+            string path = $"{uri}MovieReview";
+            
+            string reviewJson = JsonSerializer.Serialize(review);
+            HttpContent content = new StringContent(reviewJson, Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage responseMessage = await client.PostAsync(path, content);
+            if (responseMessage.StatusCode == HttpStatusCode.Created)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Enter new information");
+            }
+        }        
     }
 }
