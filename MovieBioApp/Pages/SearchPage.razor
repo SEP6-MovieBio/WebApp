@@ -1,0 +1,144 @@
+﻿@page "/SearchPage/{searchField}"
+@using System.Collections
+@using MovieBioApp.Data
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.TMDBAPI
+@using MovieBioApp.Models
+@using MovieBioApp.Models.ClassesToReadJson
+
+@inject IPeopleService PeopleService;
+@inject IMovieService MovieService;
+
+@if (biggestList == 0)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+else
+{
+    <div class="container paddingRemove">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Search Result</h3>
+            </div>
+
+        </div>
+        <div class="row rowStyle">
+            <div class="col-md-4">Actors</div>
+            <div class="col-md-4">Directors</div>
+            <div class="col-md-4">Movies</div>
+        </div>
+
+        @for (var i = 0; i < biggestList; i++)
+        {
+            <div class="row rowBorder">
+                <div class="col-md-4">
+                    @if (tmdbapiObjActors.ContainsKey(top10Actors[i].id) && i < top10Actors.Count)
+                    {
+                        <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjActors[top10Actors[i].id].results[0].profile_path" alt="No image for this Actor" width="100%"></div>
+                    }
+                </div>
+                <div class="col-md-4">
+                    @if (tmdbapiObjDirectors.ContainsKey(top10Directors[i].id) && i < top10Directors.Count)
+                    {
+                        <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path" alt="No image for this Director" width="100%"></div>
+                    }
+                </div>
+                <div class="col-md-4">
+                    @if (omdbDict.ContainsKey(top10Movies[i].MovieTitle + top10Movies[i].Year) && i < top10Movies.Count)
+                    {
+                        <div><img src="@omdbDict[top10Movies[i].MovieTitle + top10Movies[i].Year].image" alt="No image for this Movie" width="100%"></div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+@code {
+    int biggestList = 0;
+    [Parameter] 
+    public string searchField { get; set; }
+    //Directors
+    List<Director> top10Directors;
+    ITMDBAPI TMDBAPIDirectors = new TMDBAPI();
+    Dictionary<int, Result> tmdbapiObjDirectors;
+    PeopleService peopleService;
+    //Actors
+    List<Actor> top10Actors;
+    ITMDBAPI TMDBAPIActors = new TMDBAPI();
+    Dictionary<int, Result> tmdbapiObjActors;
+    //Movies
+    List<Movie> top10Movies;
+    IOMDbAPIService OmDbApiService = new OMDbAPIService();
+    Dictionary<string, OMDbAPIObj> omdbDict;
+    MovieService movieService;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(searchField);
+    //Directors
+        top10Directors = new List<Director>();
+        peopleService = new PeopleService();
+        tmdbapiObjDirectors = new Dictionary<int, Result>();
+        top10Directors = await peopleService.SearchTop10Directors(searchField);
+
+    //Actors
+        top10Actors = new List<Actor>();
+        peopleService = new PeopleService();
+        tmdbapiObjActors = new Dictionary<int, Result>();
+        top10Actors = await peopleService.SearchTop10Actors(searchField);
+
+    //Movies
+        top10Movies = new List<Movie>();
+        movieService = new MovieService();
+        omdbDict = new Dictionary<string, OMDbAPIObj>();
+        top10Movies = await movieService.SearchTop10Movies(searchField);
+
+    //Movies
+        foreach (Movie movie in top10Movies)
+        {
+            OMDbAPIObj omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(movie.MovieTitle, movie.Year);
+            if (omDbApiObj != null)
+            {
+                omdbDict.Add(movie.MovieTitle + movie.Year, omDbApiObj);
+
+            }
+        }
+
+    //Actors
+        foreach (Actor actor in top10Actors)
+        {
+            Result result = await TMDBAPIActors.GetPersonById(actor.Name);
+            if (result.results.Count != 0)
+            {
+                tmdbapiObjActors.Add(actor.id, result);
+
+            }
+        }
+
+    //Directors
+        foreach (Director director in top10Directors)
+        {
+            Result result = await TMDBAPIDirectors.GetPersonById(director.name);
+            if (result.results.Count != 0)
+            {
+                tmdbapiObjDirectors.Add(director.id, result);
+
+            }        }
+
+        getBiggestList();
+        
+        Console.WriteLine("top10Actors" + top10Actors.Count + "top10directors" + top10Directors.Count + "top10Movies" + top10Movies.Count);
+
+    }
+
+    private void getBiggestList()
+    {
+        biggestList = Math.Max(top10Actors.Count, Math.Max(top10Directors.Count, top10Movies.Count));
+    }
+
+}
+}

@@ -1,4 +1,9 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm backGroundColorNavBar border-bottom box-shadow mb-3">
+﻿@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data
+@using MovieBioApp.Models
+@inject NavigationManager NavigationManager
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm backGroundColorNavBar border-bottom box-shadow mb-3">
     <div class="container">
         <a class="navbar-brand" href=""><img class="logoIcon" src="Icons/MovieIcon.png"></a>
         <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
@@ -33,9 +38,10 @@
                     </div>
                 </div>
                 <li class="nav-item navSearchItem">
-                    <form id="form">
-                        <input type="search" id="query" name="q" placeholder="Search...">
-                        <button>Filter</button>
+                    <form id="form" @onsubmit="OnChange">
+                        <input type="search" id="query" name="q" placeholder="Search..." @oninput="@((arg) => ExecuteFilter(arg))">
+                        @*<button>Search</button>*@
+                        <button class="Button2" type="submit">@*@onclick="@OnChange"><a href="SearchPage" class="Button">Search</a>*@Search</button>
                     </form>
                 </li>
 
@@ -49,7 +55,11 @@
 
 @code {
     bool collapseNavMenu = true;
-
+    PeopleService peopleService = new PeopleService();
+    MovieService movieService = new MovieService();
+    List<Director> directors = new List<Director>();
+    string searchField = "";
+    
     string baseMenuClass = "navbar-collapse d-sm-inline-flex flex-sm-row-reverse";
 
     string NavMenuCssClass => baseMenuClass + (collapseNavMenu ? " collapse" : "");
@@ -57,6 +67,23 @@
     void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    
+    private void OnChange()
+    {
+        Console.WriteLine("Hey Wassup" + searchField);
+        NavigationManager.NavigateTo($"/SearchPage/{searchField}");
+    }
+    
+    
+    
+    private void ExecuteFilter(ChangeEventArgs changeEventArgs)
+    {
+        if (changeEventArgs.Value != null)
+        {
+            searchField = changeEventArgs.Value.ToString();
+        }
+
     }
     
 

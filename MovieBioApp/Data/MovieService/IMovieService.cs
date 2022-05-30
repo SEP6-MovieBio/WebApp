@@ -9,5 +9,6 @@ namespace MovieBioApp.Data.MovieService
         Task<Movie> GetMovieByRandChar(char randChar);
         Task<Movie> GetMovieById(int id);
         Task<List<Movie>> GetTop200Movies();
+        Task<List<Movie>> SearchTop10Movies(string searchText);
     }
 }

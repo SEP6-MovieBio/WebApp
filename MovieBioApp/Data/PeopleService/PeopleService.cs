@@ -15,11 +15,15 @@ namespace MovieBioApp.Data.PeopleService
 
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
+        public List<Actor> actors { get; set; }
+        public List<Director> directors { get; set; }
 
 
         public PeopleService()
         {
             client = new HttpClient();
+            actors = new List<Actor>();
+            directors = new List<Director>();
         }
         
         public async Task<List<Director>> GetTop20Directors()
@@ -32,6 +36,16 @@ namespace MovieBioApp.Data.PeopleService
             return result;  
         }
         
+        public async Task<List<Director>> SearchTop10Directors(string searchText)
+        {
+            Task<string> info = client.GetStringAsync(uri + $"searchTop10Directors?searchText={searchText}");
+            string message = await info;
+            List<Director> result = JsonSerializer.Deserialize<List<Director>>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            return result;
+
+        }
+        
         public async Task<List<Actor>> GetTop20Actors()
         {
             Task<string> info = client.GetStringAsync(uriForActors + "top20Actors");
@@ -40,6 +54,15 @@ namespace MovieBioApp.Data.PeopleService
             Console.WriteLine(JsonSerializer.Serialize(result));
             
             return result;  
+        }
+        
+        public async Task<List<Actor>> SearchTop10Actors(string searchText)
+        {
+            Task<string> info = client.GetStringAsync(uriForActors + $"searchTop10Actors?searchText={searchText}");
+            string message = await info;
+            List<Actor> result = JsonSerializer.Deserialize<List<Actor>>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            return result;
         }
     }
 }

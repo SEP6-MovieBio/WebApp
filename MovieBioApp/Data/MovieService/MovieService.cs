@@ -15,11 +15,13 @@ namespace MovieBioApp.Data.MovieService
 
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
+        public List<Movie> movies { get; set; }
 
 
         public MovieService()
         {
             client = new HttpClient();
+            movies = new List<Movie>();
         }
         
         //GET Movie by random character
@@ -51,6 +53,15 @@ namespace MovieBioApp.Data.MovieService
             Console.WriteLine(JsonSerializer.Serialize(result));
             
             return result;  
+        }
+        
+        public async Task<List<Movie>> SearchTop10Movies(string searchText)
+        {
+            Task<string> info = client.GetStringAsync(uri + $"searchTop10Movies?searchText={searchText}");
+            string message = await info;
+            List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            return result;
         }
         
     }

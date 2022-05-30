@@ -6,6 +6,15 @@ a.navbar-brand {
     word-break: break-all;
 }
 
+.Button{
+    height: 14px !important;
+    color: black !important;
+}
+
+.Button2{
+    height: 27.59px !important;
+}
+
 a {
     color: #0077cc;
 }

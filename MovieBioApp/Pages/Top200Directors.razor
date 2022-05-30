@@ -50,7 +50,7 @@ else
                 </div>
 
                 <div class="col-md-2">
-                    <div><img src="@tmdbapiObj[director.id].results[0].profile_path" alt="No image for this Director" width="100%"></div>
+                    <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[director.id].results[0].profile_path" alt="No image for this Director" width="100%"></div>
                 </div>
             </div>
         }
@@ -59,13 +59,11 @@ else
 
 
 @code {
-    string username = "test";
     List<Director> top200Directors;
     List<Director> top20Directors;
     ITMDBAPI TMDBAPI = new TMDBAPI();
     Dictionary<int, Result> tmdbapiObj;
     IPeopleService peopleService;
-    int amount = 0;
     protected override async Task OnInitializedAsync()
     {
         top200Directors = new List<Director>();
@@ -76,13 +74,10 @@ else
         
         foreach (Director director in top200Directors)
         {
-            //if (amount % 10 == 0)
             {
                 tmdbapiObj.Add(director.id, await TMDBAPI.GetPersonById(director.name));
                 top20Directors.Add(director);
-    //HUSK AT LAVE ET VIEW I DATABASEN SÅDAN AT DU IKKE BEHØVER AT KALDE APIEN 200 GANGE
             }
-            amount++;
         }
         
 
