@@ -36,7 +36,22 @@
         {
             @foreach (Movie m in featuredMovies)
             {
-                <img @onclick="@(e => imageclicked(m.MovieId))" src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image" width="10%">
+                if (featuredMoviesOMDB[m.MovieId].image != null)
+                {
+                    if (featuredMoviesOMDB[m.MovieId].image.Equals("N/A"))
+                    {
+                        <img @onclick="@(e => imageclicked(m.MovieId))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="10%">
+                    }
+
+                    else
+                    {
+                        <img @onclick="@(e => imageclicked(m.MovieId))" src=@featuredMoviesOMDB[m.MovieId].image alt="Featured movie has no image" width="10%">
+                    }
+                }
+                else
+                {
+                    <img @onclick="@(e => imageclicked(m.MovieId))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="10%">
+                }
             }
         }
         </div>
@@ -50,6 +65,7 @@
     List<Movie> featuredMovies;
     IOMDbAPIService OmDbApiService;
     List<OMDbAPIObj> newMovies;
+    string altimage = "https://www.prokerala.com/movies/assets/img/no-poster-available.jpg";
     
     protected override async Task OnInitializedAsync()
     {
