@@ -153,15 +153,15 @@
                             </h3>
 
 
-                            <EditForm Model="@_review" OnValidSubmit="SaveReview">
+                            <EditForm Model="@_newReview" OnValidSubmit="SaveReview">
                                 <DataAnnotationsValidator/>
                                 <ValidationSummary/>
                                 <div class="form-group">
                                     <p>@_errorMessage</p>
-                                    <textarea class="form-control" placeholder="Description" @bind="_review.ReviewDescription" rows="3"></textarea>
+                                    <textarea class="form-control" placeholder="@_savedReview.ReviewDescription" @bind="_newReview.ReviewDescription" rows="3"></textarea>
 
 
-                                    <select  @bind="_review.ReviewRating">
+                                    <select placeholder="@_savedReview.ReviewRating" @bind="_newReview.ReviewRating">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -212,8 +212,10 @@
     float _reviewRating;
     string _errorMessage = "";
 
+    MovieReview _savedReview;
+    
     Movie _movie;
-    MovieReview _review;
+    MovieReview _newReview;
     OMDbAPIObj _omDbApiObj;
     List<string> _omDbActors;
     List<string> _omDbDirectors;
@@ -226,16 +228,19 @@
         var authState = await authenticationStateTask;
         _username = authState.User.Identity.Name;
 
+        _movie = await MovieService.GetMovieById(idToBeSet);
         if (authState.User.Identity.IsAuthenticated)
         {
-            _review = new MovieReview();
+            _newReview = new MovieReview();
+            _savedReview = _movie.Reviews.First(t => string.Equals(t.ReviewUsername, _username));
+
         }
         else
         {
             Console.WriteLine("The user is NOT authenticated.");
         }
 
-        _movie = await MovieService.GetMovieById(idToBeSet);
+
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
 
@@ -253,8 +258,8 @@
 
     private void SaveReview()
     {
-        _reviewTextfield = _review.ReviewDescription;
-        _reviewRating = _review.ReviewRating;
+        _reviewTextfield = _newReview.ReviewDescription;
+        _reviewRating = _newReview.ReviewRating;
 
         if (string.IsNullOrEmpty(_reviewTextfield))
         {
@@ -263,12 +268,29 @@
 
         else
         {
-            _review.ReviewDescription = _reviewTextfield;
-            _review.ReviewRating = _reviewRating;
-            _review.ReviewUsername = _username;
-            _review.MovieID = _movie.MovieId;
-            MovieService.PostMovieReview(_review);
+            if (string.Equals(_savedReview.ReviewDescription,_reviewTextfield) ||  Equals(_savedReview.ReviewRating,_reviewRating))
+            {
+                _errorMessage = "Your review has been updated";
+                MovieService.PatchMovieReview(_username, _reviewTextfield, _reviewRating, _movie.MovieId);
+            }
+            else if(string.Equals(_savedReview.ReviewDescription,_reviewTextfield) &&  Equals(_savedReview.ReviewRating,_reviewRating))
+            {
+                _errorMessage = "You have not sumbitted any change";
+                MovieService.PatchMovieReview(_username, _reviewTextfield, _reviewRating, _movie.MovieId);
+
+            }
+            else
+            {
+                Console.WriteLine("Test3");
+                _newReview.ReviewDescription = _reviewTextfield;
+                _newReview.ReviewRating = _reviewRating;
+                _newReview.ReviewUsername = _username;
+                _newReview.MovieID = _movie.MovieId;
+                MovieService.PostMovieReview(_newReview);
+            }
+
         }
     }
+
 
 }

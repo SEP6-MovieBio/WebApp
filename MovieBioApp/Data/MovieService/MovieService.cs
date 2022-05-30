@@ -71,6 +71,29 @@ namespace MovieBioApp.Data.MovieService
             {
                 Console.WriteLine("Enter new information");
             }
-        }        
+        }
+
+        public async Task PatchMovieReview(string username, string reviewTextfield, float reviewRating, int movieID)
+        {
+            string path = $"{uri}UpdateMovieReview";
+            MovieReview updatedInfo = new MovieReview();
+            updatedInfo.ReviewUsername = username;
+            updatedInfo.ReviewDescription = reviewTextfield;
+            updatedInfo.ReviewRating = reviewRating;
+            updatedInfo.MovieID = movieID;
+
+            string reviewJson = JsonSerializer.Serialize(updatedInfo);
+            HttpContent content = new StringContent(reviewJson, Encoding.UTF8, "application/json");
+            
+            HttpResponseMessage responseMessage = await client.PostAsync(path, content);
+            if (responseMessage.StatusCode == HttpStatusCode.Created)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Enter new information");
+            }        
+        }
     }
 }
