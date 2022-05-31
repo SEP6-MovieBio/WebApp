@@ -14,5 +14,6 @@ namespace MovieBioApp.Data.MovieService
         Task<List<Movie>> SearchTop10Movies(string searchText);
         Task<double> GetMovieRatingByActorRating(int movieID);
 
+        Task<Dictionary<string, double>> getMovieRatingByDecades();
     }
 }

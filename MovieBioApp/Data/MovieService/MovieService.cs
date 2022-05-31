@@ -74,6 +74,15 @@ namespace MovieBioApp.Data.MovieService
             return result;        
         }
 
+        public async Task<Dictionary<string, double>> getMovieRatingByDecades()
+        {
+            Task<string> info = client.GetStringAsync(uri + $"MovieRatingsByDecade");
+            string message = await info;
+            Dictionary<string, double> result = JsonSerializer.Deserialize<Dictionary<string, double>>(message);
+            
+            return result; 
+        }
+
         public async Task PostMovieReview(MovieReview review)
         {
 

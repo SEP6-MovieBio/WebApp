@@ -1,0 +1,59 @@
+﻿@page "/MovieDecadesRating"
+@using System.Collections
+@using MovieBioApp.Data
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.UserService
+@using MovieBioApp.Models
+
+@inject IMovieService _movieService;
+
+
+
+<div class="container paddingRemove">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Movie ratings per decade</h3>
+        </div>
+    </div>
+    <div class="row rowStyle">
+        <div class="col-md-2">Decade</div>
+        <div class="col-md-2">Average Rating</div>
+        
+    </div>
+    @if (decades == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        foreach (KeyValuePair<string,double> decade in decades)
+        {
+            <div class="row rowBorder">
+                <div class="col-md-2">
+                    <div>@decade.Key</div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>@decade.Value</div>
+                </div>
+            </div>
+        }
+        
+    }
+</div>
+    
+    
+
+
+
+@code {
+    Dictionary<string, double> decades;
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        decades = await _movieService.getMovieRatingByDecades();
+    }
+
+}
