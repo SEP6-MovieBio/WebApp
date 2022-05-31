@@ -125,7 +125,7 @@
     {
         //_username = CustomAuthentication.CachedUser.Username;
         var authState = await authenticationStateTask;
-        var user = authState.User; 
+        var user = authState.User;
         
         nicenessRatio= await UserInfoService.getNicenessRatio(_username);
         
