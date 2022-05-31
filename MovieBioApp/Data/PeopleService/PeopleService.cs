@@ -46,6 +46,7 @@ namespace MovieBioApp.Data.PeopleService
 
         }
         
+
         public async Task<List<Actor>> GetTop20Actors()
         {
             Task<string> info = client.GetStringAsync(uriForActors + "top20Actors");

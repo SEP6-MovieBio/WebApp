@@ -1,6 +1,48 @@
 ﻿@page "/LogIn"
+@using MovieBioApp.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager
+
 <h3>LogIn</h3>
 
+        <div class="form-group">
+            <label>User name:</label>
+            <input type="text" placeholder="Username" @bind-value="_username"/>
+
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" placeholder="Password" @bind-value="_password"/>
+        </div>
+
+
+        <div style="color:red">@_errorMessage</div>
+        <a href="" @onclick="PerformLogin">
+            Login
+        </a>
+
 @code {
-    
+    private string _username;
+    private string _password;
+    private string _errorMessage;
+
+    private async Task PerformLogin()
+    {
+
+        _errorMessage = "";
+        try
+        {
+            await ((CustomAuthentication) AuthenticationStateProvider).ValidateLogin(_username, _password);
+            _username = "";
+            _password = "";
+            NavigationManager.NavigateTo("/"); 
+
+
+        }
+        catch (Exception e)
+        {
+            _errorMessage = e.Message;
+        }
+    }
+
 }

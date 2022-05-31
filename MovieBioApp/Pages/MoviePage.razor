@@ -1,10 +1,14 @@
 ﻿@page "/MoviePage/{idToBeSet}"
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 
 @inject IMovieService MovieService;
 @inject IOMDbAPIService OmDbApiService;
+@inject IUserInfoService UserService;
+@inject IPeopleService PeopleService;
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -21,151 +25,229 @@
 <body>
 <div class="container">
 
-    @if (_movie == null || _omDbApiObj == null)
-    {
-        <p>
-            <em>Loading...</em>
-        </p>
-    }
-    else
-    {
-        <div class="container">
-            <div class="row">
+@if (_movie == null || _omDbApiObj == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <h3>
+                <strong>@_movie.MovieTitle</strong>
+            </h3>
+            <img src="@_omDbApiObj.image" alt="No image for this movie">
+
+        </div>
+        <div class="col-sm-7">
+
+            <h3>
+                <strong>Description</strong>
+            </h3>
+            <p>@_omDbApiObj.description</p>
+        </div>
+        
+        <div class="col-sm-1">
+            <AuthorizeView>
+                <Authorized>
+                    <button @onclick="AddToFavourites" class="fas fa-heart" style="font-size:60px;color:red"></button>
+                </Authorized>
+                <NotAuthorized>
+                    <p>Log in to add this movie to your list!</p>
+                </NotAuthorized>
+            </AuthorizeView>
+        </div>
+
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>
+                <strong>Genre</strong>
+            </h3>
+
+            <ul>
+                @foreach (string genre in _omDbGenre)
+                {
+                    <li>@genre</li>
+                }
+            </ul>
+            <h3>
+                <strong>Rating</strong>
+            </h3>
+            @if (_movie.Rating == 0)
+            {
+                if (string.IsNullOrEmpty(_omDbApiObj.ratingValue))
+                {
+                    <p>No rating for this movie yet</p>
+                }
+                else
+                {
+                    <p>@_omDbApiObj.ratingValue / 10</p>
+                }
+            }
+            else
+            {
+                <p>@_movie.Rating / 10</p>
+            }
+
+            <h3>
+                <strong>Rating based on actors</strong>
+            </h3>
+            <p>@_movie.RatingBasedOnActors / 10</p>
+
+
+            <h3>
+                <strong>Directors</strong>
+            </h3>
+            @if (_movie.Director == null)
+            {
+                <ul>
+                    @foreach (string director in _omDbDirectors)
+                    {
+                        <li>@director</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    @foreach (string director in _movie.Director)
+                    {
+                        <li>@director</li>
+                    }
+                </ul>
+            }
+            <h3>
+                <strong>Stars</strong>
+            </h3>
+            <ul>
+                @foreach (string actor in _omDbActors)
+                {
+                    <li>@actor</li>
+                }
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <h3>
+            <strong>Reviews</strong>
+        </h3>
+        <br/>
+        <p>@_noReviewsToShow</p>
+
+        <br/>
+    </div>
+    <div class="row">
+        <style>#div1 { height: 300px; width:300px; overflow: scroll; background: #eeeeee}</style>
+
+        <div class="col-sm-8" id="div1">
+            @foreach (MovieReview review in _movie.Reviews)
+            {
+                <div id="div1">
+                    <p>
+                        <strong>@review.ReviewUsername</strong>
+                    </p>
+                    <p><strong>Description</strong></p>
+                    <p>@review.ReviewDescription</p>
+                    <p><strong>Rating</strong></p>
+                    <p>@review.ReviewRating / 10</p>
+                </div>
+            }
+
+
+
+        </div>
+
+        <AuthorizeView Context="AuthorizeContext">
+            <Authorized>
                 <div class="col-sm-4">
-                    <h3>
-                        <strong>@_movie.MovieTitle</strong>
-                    </h3>
-                    <img src="@_omDbApiObj.image" alt="No image for this movie">
-
-                </div>
-                <div class="col-sm-8">
-
-                    <h3>
-                        <strong>Description</strong>
-                    </h3>
-                    <p>@_omDbApiObj.description</p>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <h3>
-                        <strong>Genre</strong>
-                    </h3>
-
-                    <ul>
-                        @foreach (string genre in _omDbGenre)
-                        {
-                            <li>@genre</li>
-                        }
-                    </ul>
-                    <h3>
-                        <strong>Rating</strong>
-                    </h3>
-                    @if (_movie.Rating == 0)
-                    {
-                        if (string.IsNullOrEmpty(_omDbApiObj.ratingValue))
-                        {
-                            <p>No rating for this movie yet</p>
-                        }
-                        else
-                        {
-                            <p>@_omDbApiObj.ratingValue / 10</p>
-                        }
-                    }
-                    else
-                    {
-                        <p>@_movie.Rating / 10</p>
-                    }
-
-                    <h3>
-                        <strong>Rating based on actors</strong>
-                    </h3>
-                    <p>@_movie.RatingBasedOnActors / 10</p>
-
-
-                    <h3>
-                        <strong>Directors</strong>
-                    </h3>
-                    @if (_movie.Director == null)
-                    {
-                        <ul>
-                            @foreach (string director in _omDbDirectors)
-                            {
-                                <li>@director</li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <ul>
-                            @foreach (string director in _movie.Director)
-                            {
-                                <li>@director</li>
-                            }
-                        </ul>
-                    }
-                    <h3>
-                        <strong>Stars</strong>
-                    </h3>
-                    <ul>
-                        @foreach (string actor in _omDbActors)
-                        {
-                            <li>@actor</li>
-                        }
-                    </ul>
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <h3>
-                        <strong>Reviews</strong>
-
-                        @foreach (MovieReview review in _movie.Reviews)
-                        {
-                            <p>
-                                <strong>@review.ReviewUsername</strong>
-                            </p>
-                            <p>@review.ReviewDescription</p>
-                            <p>@review.ReviewRating</p>
-                        }
-                    </h3>
-
-
-                </div>
-
-                <div class="col-sm-6">
                     <h3>
                         <strong>Write your review</strong>
                     </h3>
-                    <div class="form-outline">
-                        <textarea class="form-control" id="@_reviewTextfield" rows="4"></textarea>
-                        <select>
-                            <option value=”@_reviewRating”>1</option>
-                            <option value=”@_reviewRating”>2</option>
-                            <option value=”@_reviewRating”>3</option>
-                            <option value=”@_reviewRating”>4</option>
-                            <option value=”@_reviewRating”>5</option>
-                            <option value=”@_reviewRating”>6</option>
-                            <option value=”@_reviewRating”>7</option>
-                            <option value=”@_reviewRating”>8</option>
-                            <option value=”@_reviewRating”>9</option>
-                            <option value=”@_reviewRating”>10</option>
 
-                        </select>
-                        <br>
-                        <button @onclick="(() => SaveReview())">Submit review</button>
-                    </div>
+                    @if (_savedReview != null)
+                    {
+                        @if (string.Equals(_username,_savedReview.ReviewUsername))
+                        {
+                            <EditForm Model="@_newReview" OnValidSubmit="UpdateReview">
+                                <DataAnnotationsValidator/>
+                                <ValidationSummary/>
+                                <div class="form-group">
+                                    <p>@_errorMessage</p>
+                                    <textarea class="form-control"  @bind="_newReview.ReviewDescription" rows="3">@_savedReview.ReviewDescription
+                                                                   </textarea>
+                           
+                           
+                                    <select @bind="_newReview.ReviewRating">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                           
+                                    </select>
+                                    <button class="btn btn-outline-dark" type="submit">Update</button>
+                                </div>
+                            </EditForm>
+                           
+                        }
+
+                    }                        else
+                    {
+                        <EditForm Model="@_newReview" OnValidSubmit="SaveReview">
+                            <DataAnnotationsValidator/>
+                            <ValidationSummary/>
+                            <div class="form-group">
+                                <p>@_errorMessage</p>
+                                <textarea class="form-control" @bind="_newReview.ReviewDescription" rows="3"></textarea>
+                                                
+                                                
+                                <select @bind="_newReview.ReviewRating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                                
+                                </select>
+                                <button class="btn btn-outline-dark" type="submit">Submit</button>
+                            </div>
+                        </EditForm>
+                                                
+                    }
 
 
                 </div>
+            </Authorized>
+            <NotAuthorized>
+                <div class="col-sm-4">
+                    <h3>
+                        <strong>Log in or signup to write your own review!</strong>
+                    </h3>
 
-            </div>
+                </div>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
 
-        </div>
-    }
+    </div>
+}
 
 
 
@@ -176,9 +258,20 @@
 @code {
     [Parameter]
     public string? idToBeSet { get; set; }
-    
-    string _reviewTextfield;
+        
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    private string _username;
+
+    string _reviewTextfield = "";
     float _reviewRating;
+    string _errorMessage = "";
+    string _noReviewsToShow = "";
+    double _movieRatingByActor;
+
+    MovieReview _savedReview;
+    MovieReview _newReview;
 
     Movie _movie;
     OMDbAPIObj _omDbApiObj;
@@ -188,21 +281,99 @@
 
     protected override async Task OnInitializedAsync()
     {
+        _omDbActors = new List<string>();
+        _omDbDirectors = new List<string>();
+        _omDbGenre = new List<string>();
+        
+        var authState = await authenticationStateTask;
+        _username = authState.User.Identity.Name;
+
         _movie = await MovieService.GetMovieById(Int32.Parse(idToBeSet));
+        _movieRatingByActor = await (MovieService.GetMovieRatingByActorRating(_movie.MovieId));
+        _movie.RatingBasedOnActors = float.Parse(_movieRatingByActor.ToString());
+        
+        if (authState.User.Identity.IsAuthenticated)
+        {
+            _newReview = new MovieReview();
+            try
+            {
+                if ( _movie.Reviews != null)
+                {
+                    _savedReview = _movie.Reviews.First(t => string.Equals(t.ReviewUsername, _username));
+                }
+                else
+                {
+                    _savedReview = null; 
+                }
+            }
+            catch (Exception e)
+            {
+                _noReviewsToShow = "No reviews for this movie yet!";
+            }
+        }
+        else
+        {
+            Console.WriteLine("The user is NOT authenticated.");
+        }
+
+
 
         _omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(_movie.MovieTitle, _movie.Year);
-        
-        _omDbActors = _omDbApiObj.actors.Split(new char[] {','}).ToList();
-        _omDbDirectors = _omDbApiObj.directors.Split(new char[] {','}).ToList();
-        _omDbGenre = _omDbApiObj.genre.Split(new char[] {','}).ToList();
+
+        if (string.IsNullOrEmpty(_omDbApiObj.actors) || string.IsNullOrEmpty(_omDbApiObj.directors) || string.IsNullOrEmpty(_omDbApiObj.genre))
+        {
+            _omDbActors.Add("No actors to show");
+            _omDbDirectors.Add("No directors to show");
+            _omDbGenre.Add("No genre to show");
+        }
+
+        _omDbActors = _omDbApiObj.actors.Split(new char[] { ',' }).ToList();
+        _omDbDirectors = _omDbApiObj.directors.Split(new char[] { ',' }).ToList();
+        _omDbGenre = _omDbApiObj.genre.Split(new char[] { ',' }).ToList();
     }
 
     private void SaveReview()
     {
-        if (_reviewRating == null || string.IsNullOrEmpty(_reviewTextfield))
+        _reviewTextfield = _newReview.ReviewDescription;
+        _reviewRating = _newReview.ReviewRating;
+
+        if (string.IsNullOrEmpty(_reviewTextfield))
         {
-            Console.WriteLine("Should display error to user");
+            _errorMessage = "Please enter a valid description";
         }
+
+        else
+        {
+            Console.WriteLine("POST");
+            _newReview.ReviewDescription = _reviewTextfield;
+            _newReview.ReviewRating = _reviewRating;
+            _newReview.ReviewUsername = _username;
+            _newReview.MovieID = _movie.MovieId;
+            MovieService.PostMovieReview(_newReview);
+
+        }
+
+    }
+    
+    private void UpdateReview()
+    {
+        _reviewTextfield = _newReview.ReviewDescription;
+        _reviewRating = _newReview.ReviewRating;
+
+        if (string.IsNullOrEmpty(_reviewTextfield))
+        {
+            _errorMessage = "Please enter a valid description";
+        }
+        
+        _errorMessage = "Your review has been updated";
+        MovieService.PatchMovieReview(_username, _reviewTextfield, _reviewRating, _movie.MovieId);
+        
+
+    }
+    
+    private void AddToFavourites()
+    {
+        UserService.PostFavouriteMovie(_username,_movie.MovieId);
     }
 
 }
