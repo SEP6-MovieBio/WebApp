@@ -122,7 +122,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //_username = CustomAuthentication.CachedUser.Username;
+        _username = CustomAuthentication.CachedUser.Username;
         var authState = await authenticationStateTask;
         var user = authState.User;
         
