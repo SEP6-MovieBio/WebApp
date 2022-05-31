@@ -15,6 +15,7 @@ namespace MovieBioApp.Data.UserService
         
         private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
         private string userUri = "https://moviebiodb.azurewebsites.net/User/";
+        private string userSearchUri = "https://moviebiodb.azurewebsites.net/searchTop10Users";
 
         //private string uri = "https://localhost:5003/MovieInfo/";
         //private string userInfoUri = "https://localhost:5003/userinfo/";
@@ -34,6 +35,15 @@ namespace MovieBioApp.Data.UserService
             Task<string> path = client.GetStringAsync(userInfoUri +"?username=" + username);
             string message = await path;
             UserInfo result = JsonSerializer.Deserialize<UserInfo>(message);
+
+            return result;
+        }
+        
+        public async Task<List<UserInfo>> SearchTop10Users(string searchText)
+        {
+            Task<string> path = client.GetStringAsync( userSearchUri + $"?searchText={searchText}");
+            string message = await path;
+            List<UserInfo> result = JsonSerializer.Deserialize<List<UserInfo>>(message);
 
             return result;
         }
