@@ -49,7 +49,7 @@ namespace MovieBioApp.Data.MovieService
         //Get top200 movies
         public async Task<List<Movie>> GetTop200Movies()
         {
-            Task<string> info = client.GetStringAsync(uri + "top200Movies");
+            Task<string> info = client.GetStringAsync(uri + "Top200Movies");
             string message = await info;
             List<Movie> result = JsonSerializer.Deserialize<List<Movie>>(message);
             

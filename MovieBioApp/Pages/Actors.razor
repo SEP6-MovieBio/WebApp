@@ -1,6 +1,125 @@
-﻿@page "/Actors"
-<h3>Actors</h3>
+﻿@page "/Actors/{id}"
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.UserService
+@using MovieBioApp.Models
+@using MovieBioApp.Data
+@using MovieBioApp.Data.TMDBAPI
+@using MovieBioApp.Models.ClassesToReadJson
+
+@inject IMovieService MovieService;
+@inject IOMDbAPIService OmDbApiService;
+@inject IUserInfoService UserService;
+@inject IPeopleService PeopleService;
+@inject NavigationManager UriHelper;
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MovieBioApp</title>
+    <base href="~/"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="MovieBioApp.styles.css" rel="stylesheet"/>
+    <link href="css/starSystem.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    @if (people == null || actor == null)
+    {
+        <p>
+            <em>Loading...</em>
+        </p>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    @if (people.profile_path != null)
+                    {
+                        <img src="https://image.tmdb.org/t/p/original/@people.profile_path" alt="No image for this movie" width="100%">
+                    }
+                    else
+                    {
+                        <img src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured Director has no image" width="100%">
+                    }
+                </div>
+                <div class="col-md-8">
+                    <h3>Known For:</h3>
+                    <div class="row">
+                    @foreach (MovieJson movieJson in people.known_for)
+                    {
+                        if (movieJson != null)
+                        {
+                            <div class="col-md-3">
+                                <img @onclick="@(e => movieImageclicked(movieJson.id))" style="width:150px" src="https://image.tmdb.org/t/p/original/@movieJson.poster_path" alt="No Image">
+                            </div>
+
+                        }
+                    }
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <strong>Department:</strong>
+                        <p>@people.known_for_department</p>
+                    </div>
+                    
+                    
+                    <div class="col-md-4">
+                        <strong>Born</strong>
+                        @if (actor.Age != 0)
+                                               {
+                                                   <p>@actor.Age</p>  
+                                               }
+                                            else
+                                            {
+                                                <p>Not Known</p>
+                                            }
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row"></div>
+            <div class="row"></div>
+    }
+</div>
+    </body>
+</html>
 
 @code {
+    [Parameter]
+    public string id { get; set; }
+
+
+        Actor actor = new Actor();
+
+    People people = new People();
     
+    ITMDBAPI tmdbapiService = new TMDBAPI();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine(id);
+        actor = await PeopleService.GetActorById(int.Parse(id));
+        Result result = await tmdbapiService.GetPersonById(actor.Name);
+        if (result.results.Count != 0)
+        {
+            people = result.results[0];
+        }
+    }
+    
+    void movieImageclicked(int id)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ id);
+    }
 }

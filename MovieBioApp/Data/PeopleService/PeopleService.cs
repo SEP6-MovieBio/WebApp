@@ -65,5 +65,23 @@ namespace MovieBioApp.Data.PeopleService
             Console.WriteLine(JsonSerializer.Serialize(result));
             return result;
         }
+
+        public async Task<Director> GetDirectorById(int id)
+        {
+            Task<string> info = client.GetStringAsync(uri + $"getDirector?id={id}");
+            string message = await info;
+            Director result = JsonSerializer.Deserialize<Director>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            return result;
+        }
+        
+        public async Task<Actor> GetActorById(int id)
+        {
+            Task<string> info = client.GetStringAsync(uriForActors + $"getActor?id={id}");
+            string message = await info;
+            Actor result = JsonSerializer.Deserialize<Actor>(message);
+            Console.WriteLine(JsonSerializer.Serialize(result));
+            return result;
+        }
     }
 }

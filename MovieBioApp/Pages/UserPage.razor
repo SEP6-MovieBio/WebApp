@@ -1,0 +1,117 @@
+﻿@page "/UserPage/{username}"
+@using MovieBioApp.Data
+@using System.Text.Json
+@using MovieBioApp.Authentication
+@using MovieBioApp.Data.UserService
+@using MovieBioApp.Models
+@inject IUserInfoService UserInfoService;
+@inject NavigationManager NavigationManager
+
+<h3>UserProfile</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>MovieBioApp</title>
+    <base href="~/"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="MovieBioApp.styles.css" rel="stylesheet"/>
+    <link href="css/starSystem.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="row justify-content-start p-3">
+    <img src="https://foundrmeet.com/wp-content/themes/cera/assets/images/avatars/user-avatar.png" class="col-auto rounded-circle" alt="profile picture">
+    <div class="col-auto">
+        <h1>Bio</h1>
+        @{
+            if (_userInfo != null)
+            {
+                <div>_userInfo.Biography</div>
+            }
+            else
+            {
+                <div></div>
+            }
+        }
+    </div>
+    <div class="col-auto">
+        <h1 @onclick="@(e => FavoriteMoviesClicked(username))">Favorite Movies</h1>
+    </div>
+</div>
+<h1>Email</h1>
+@{
+    
+    if (_userInfo != null)
+    {
+        if (_userInfo.EmailIsHidden)
+        {
+            _email = "Email is hidden";
+        }
+        else
+        {
+            _email = _userInfo.Email;
+        }
+    }
+}
+<p>@_email</p>
+<h1>Phone</h1>
+@{
+    
+    if (_userInfo != null)
+    {
+        if (_userInfo.PhoneIsHidden)
+        {
+            _phone = "Phone number is hidden";
+        }
+        else
+        {
+            _phone = _userInfo.PhoneNumber;
+        }
+    }
+}
+<p class="border-bottom-20">@_phone</p>
+<div>
+    <h1>Niceness ratio</h1>
+    
+        @if(nicenessRatio.CompareTo(-1) == 0)
+        {
+            <div class="stars" style="--w: 50%;"></div>
+        }
+        else
+        {
+            <div class="stars" style="--w: @nicenessRatio%;"></div>
+        }
+</div>
+
+</body>
+
+</html>
+@code {
+    [Parameter]
+    public string username { get; set; }
+    UserInfo _userInfo;
+    double nicenessRatio;
+    
+    string _message = "";
+    string _email = "";
+    string _phone = "";
+    string _biography = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+  
+        nicenessRatio = await UserInfoService.getNicenessRatio(username);
+        
+     
+            _userInfo = await UserInfoService.GetUserInfoRest(username);
+        }
+
+    void FavoriteMoviesClicked(string value)
+    {
+        NavigationManager.NavigateTo($"/FavoriteMovies/{value}");
+    }
+
+}

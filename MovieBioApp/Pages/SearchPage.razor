@@ -44,12 +44,12 @@ else
                     {
                         if (tmdbapiObjActors.ContainsKey(top10Actors[i].id) && tmdbapiObjActors[top10Actors[i].id].results[0].profile_path != null)
                         {
-                            <div class="card mb-4 box-shadow"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjActors[top10Actors[i].id].results[0].profile_path" alt="No image for this Actor" width="100%">
+                            <div class="card mb-4 box-shadow" @onclick="@(e => actorImageclicked(top10Actors[i].id))"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjActors[top10Actors[i].id].results[0].profile_path" alt="No image for this Actor" width="100%">
                             <p class="card-text">@tmdbapiObjActors[top10Actors[i].id].results[0].name</p></div>
                         }
                         else
                         {
-                            //<img @onclick="@(e => actorImageclicked())" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                            <img @onclick="@(e => actorImageclicked(top10Actors[i].id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
                         }
                     }
                 </div>
@@ -58,12 +58,12 @@ else
                     {
                         if (tmdbapiObjDirectors.ContainsKey(top10Directors[i].id) && tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path != null)
                         {
-                        <div class="card mb-4 box-shadow"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path" alt="No image for this Director" width="100%">
+                        <div class="card mb-4 box-shadow" @onclick="@(e => directorImageclicked(top10Directors[i].id))"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path" alt="No image for this Director" width="100%">
                             <p class="card-text">@tmdbapiObjDirectors[top10Directors[i].id].results[0].name</p></div>
                         }
                         else
                         {
-                        //<img @onclick="@(e => directorImageclicked())" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                        <img @onclick="@(e => directorImageclicked(top10Directors[i].id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
                         }
                     }
                 </div>
@@ -86,7 +86,7 @@ else
                     {
                         if (!string.IsNullOrEmpty(top10Users[i].Biography))
                         {
-                        <div class="card mb-4 box-shadow">
+                        <div class="card mb-4 box-shadow" @onclick="@(e=> userImageclicked(top10Users[i].Username))">
                             <div>
                                 <div>
                                     Username:
@@ -106,7 +106,7 @@ else
                             }
                         else
                         {
-                        <div class="card mb-4 box-shadow">
+                        <div class="card mb-4 box-shadow" @onclick="@(e=> userImageclicked(top10Users[i].Username))">
                             <div>
                                 <div>
                                     Username:
@@ -238,6 +238,21 @@ else
     void movieImageclicked(int id)
     {
         UriHelper.NavigateTo("MoviePage/"+ id);
+    }
+        
+    void userImageclicked(string username)
+    {
+        UriHelper.NavigateTo("UserPage/"+ username);
+    }
+
+    void directorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("DirectorPage/"+ id);
+    }
+    
+    void actorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("Actors/"+ id);
     }
 
 }
