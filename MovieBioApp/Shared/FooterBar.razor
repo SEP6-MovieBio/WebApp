@@ -1,22 +1,24 @@
 ﻿@page "/Footer"
+@inject NavigationManager UriHelper
 <div class="footer">
   <div class="container">
       <div class="row">
           <div class="col-sm">
               <p>About Us</p>
+              We like movies and stuff
               <br>
                         <p>Contact Us</p>
-                        <p>Email: blabla</p>
-                        <p>Phone: blabla</p>
-                        <p>Address: No</p>
+                        <p>Email: <a href="Mailto:Service@MovieBio.com" >Service@MovieBio.com</a></p>
+                        <p>Phone: +45 88 88 88 88</p>
+                        <p>Address: The Cloud</p>
           </div>
           <div class="col-sm">
-                <p>Movies picked by us</p>
-                        <p>Movie 1</p>
-                        <p>Movie 2</p>
-                        <p>Movie 3</p>
-                        <p>Movie 4</p>
-                        <p>Movie 5</p>
+                <p>Movies picked by us:</p>
+                        <p @onclick="@(e => imageclicked(1431045))">Deadpool</p>
+                        <p @onclick="@(e => imageclicked(69745))">Female Vampire</p>
+                        <p @onclick="@(e => imageclicked(68646))">The Godfather</p>
+                        <p @onclick="@(e => imageclicked(1396484))">IT</p>
+                        <p @onclick="@(e => imageclicked(170016))">How the grinch stole christmas</p>
           </div>
       </div>
   </div>
@@ -35,5 +37,8 @@
 
 
 @code {
-    
+    void imageclicked(int id)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ id);
+    }
 }
