@@ -13,12 +13,12 @@ namespace MovieBioApp.Data.UserService
     {
         
         
-        //private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
-        //private string userUri = "https://moviebiodb.azurewebsites.net/User/";
+        private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
+        private string userUri = "https://moviebiodb.azurewebsites.net/User/";
 
         //private string uri = "https://localhost:5003/MovieInfo/";
-        private string userInfoUri = "https://localhost:5003/userinfo/";
-        private string userUri = "https://localhost:5003/User/";
+        //private string userInfoUri = "https://localhost:5003/userinfo/";
+        //private string userUri = "https://localhost:5003/User/";
         
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
@@ -103,14 +103,28 @@ namespace MovieBioApp.Data.UserService
             HttpResponseMessage responseMessage = await client.PostAsync(path, content);
             if (responseMessage.StatusCode == HttpStatusCode.Created)
             {
-                Console.WriteLine("Success");
+                Console.WriteLine("PostCreateUser succesful");
             }
             else
             {
-                Console.WriteLine("Enter new information");
+                Console.WriteLine("PostCreateUser Not succesful");
             }
         }
-        
+
+        public async Task PostFavouriteMovie(string username, int movieID)
+        {
+            string path = $"{userUri}postFavouriteMovie?username={username}&movieID={movieID}";
+
+            HttpResponseMessage responseMessage = await client.PostAsync(path,null);
+            if (responseMessage.StatusCode == HttpStatusCode.Created)
+            {
+                Console.WriteLine("PostFavouriteMovie succesful");
+            }
+            else
+            {
+                Console.WriteLine("PostFavouriteMovie Not succesful");
+            }       
+        }
     }
 }
 

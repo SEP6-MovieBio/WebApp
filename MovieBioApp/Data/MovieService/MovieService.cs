@@ -12,8 +12,8 @@ namespace MovieBioApp.Data.MovieService
 {
     public class MovieService : IMovieService
     {
-        //private string uri = "https://moviebiodb.azurewebsites.net/MovieInfo/";
-        private string uri = "https://localhost:5003/MovieInfo/";
+        private string uri = "https://moviebiodb.azurewebsites.net/MovieInfo/";
+        //private string uri = "https://localhost:5003/MovieInfo/";
 
         private HttpClient client;
         //private OMDbAPIService _omDbApiObj;
@@ -65,11 +65,11 @@ namespace MovieBioApp.Data.MovieService
             HttpResponseMessage responseMessage = await client.PostAsync(path, content);
             if (responseMessage.StatusCode == HttpStatusCode.Created)
             {
-                Console.WriteLine("Success");
+                Console.WriteLine("PostMovieReview succesful");
             }
             else
             {
-                Console.WriteLine("Enter new information");
+                Console.WriteLine("PostMovieReview Not succesful");
             }
         }
 
@@ -85,14 +85,14 @@ namespace MovieBioApp.Data.MovieService
             string reviewJson = JsonSerializer.Serialize(updatedInfo);
             HttpContent content = new StringContent(reviewJson, Encoding.UTF8, "application/json");
             
-            HttpResponseMessage responseMessage = await client.PostAsync(path, content);
+            HttpResponseMessage responseMessage = await client.PatchAsync(path, content);
             if (responseMessage.StatusCode == HttpStatusCode.Created)
             {
-                Console.WriteLine("Success");
+                Console.WriteLine("PatchMovieReview succesful");
             }
             else
             {
-                Console.WriteLine("Enter new information");
+                Console.WriteLine("PatchMovieReview Not succesful");
             }        
         }
     }

@@ -1,4 +1,4 @@
-﻿@page "/FavoriteMovies"
+﻿@page "/FavoriteMovies/{value}"
 @using System.Collections
 @using MovieBioApp.Data
 @using MovieBioApp.Data.OMDbAPI
@@ -23,13 +23,13 @@
         <div class="col-md-2">Star Actor</div>
         <div class="col-md-2">Picture</div>
     </div>
-    @if (favoriteMovies == null || omdbDict == null)
+    @if (_favoriteMovies == null || _omdbDict == null)
     {
         <p>Loading...</p>
     }
     else
     {
-        foreach (Movie movie in favoriteMovies)
+        foreach (Movie movie in _favoriteMovies)
         {
             <div class="row rowBorder">
                 <div class="col-md-2">
@@ -37,7 +37,7 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@omdbDict[movie.MovieTitle].genre</div>
+                    <div>@_omdbDict[movie.MovieTitle].genre</div>
                 </div>
                 
                 <div class="col-md-2">
@@ -53,11 +53,11 @@
                 </div>
                 
                 <div class="col-md-2">
-                    <div>@omdbDict[movie.MovieTitle].actors</div>
+                    <div>@_omdbDict[movie.MovieTitle].actors</div>
                 </div>
                 
                 <div class="col-md-2">
-                    <div><img src="@omdbDict[movie.MovieTitle].image" alt="No image for this movie" width="100%"></div>
+                    <div><img src="@_omdbDict[movie.MovieTitle].image" alt="No image for this movie" width="100%"></div>
                 </div>
             </div>
         }
@@ -70,21 +70,26 @@
 
 
 @code {
-    string username = "test";
-    List<Movie> favoriteMovies;
-    IOMDbAPIService OmDbApiService = new OMDbAPIService();
-    Dictionary<string, OMDbAPIObj> omdbDict;
+    [Parameter]
+    public string value { get; set; }
+
+    private string _username = "";
+    
+    List<Movie> _favoriteMovies;
+    IOMDbAPIService _omDbApiService = new OMDbAPIService();
+    Dictionary<string, OMDbAPIObj> _omdbDict;
     //UserInfoService UserInfoService;
 
     protected override async Task OnInitializedAsync()
     {
-        favoriteMovies = new List<Movie>();
+        _username = value;
+        _favoriteMovies = new List<Movie>();
         //UserInfoService = new UserInfoService();
-        omdbDict = new Dictionary<string, OMDbAPIObj>();
-        favoriteMovies = await UserInfoService.GetFavoriteMovies(username);
-        foreach (Movie m in favoriteMovies)
+        _omdbDict = new Dictionary<string, OMDbAPIObj>();
+        _favoriteMovies = await UserInfoService.GetFavoriteMovies(_username);
+        foreach (Movie m in _favoriteMovies)
         {
-            omdbDict.Add(m.MovieTitle, await OmDbApiService.GetOMDbAPIMovie(m.MovieTitle, m.Year));
+            _omdbDict.Add(m.MovieTitle, await _omDbApiService.GetOMDbAPIMovie(m.MovieTitle, m.Year));
         }
     }
 

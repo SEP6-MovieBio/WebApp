@@ -14,5 +14,6 @@ namespace MovieBioApp.Data.UserService
         Task<User> GetValidatedUser(string username, string password);
         //Task<bool> PostPasswordHashString(string username, string password);
         Task PostCreateUser(UserInfo userInfo);
+        Task PostFavouriteMovie(string username, int movieID);
     }
 }

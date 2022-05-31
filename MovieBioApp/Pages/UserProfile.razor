@@ -6,7 +6,7 @@
 @using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 @inject IUserInfoService UserInfoService;
-
+@inject NavigationManager NavigationManager
 
 <h3>UserProfile</h3>
 <!--
@@ -49,6 +49,7 @@
         </div>
         <div>
             <h1>Confirm password</h1>
+            <p>@_message</p>
             <input type="text" @bind="_confirmPassword" id="confirmPasswordField">
         </div>
         <div class="col-auto border-bottom-20">
@@ -107,8 +108,8 @@
     
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
-    
-    
+
+    string _message = "";
     string _email = "";
     string _phone = "";
     string _password,_confirmPassword = "";
@@ -135,14 +136,15 @@
 
     public async Task<bool> SubmitChangePassword()
     {
-        if (_password == _confirmPassword)
+        if (string.Equals(_password, _confirmPassword))
         {
             _userInfo.Password = _password;
+            _message = "Password successfully changed!";
             return await UserInfoService.PostPasswordHash(_userInfo);
         }
         else
         {
-            _confirmPassword = "Error passwords do not match";
+            _message = "Error passwords do not match";
             return false;
         }
     }
