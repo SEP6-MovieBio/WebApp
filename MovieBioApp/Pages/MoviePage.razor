@@ -277,6 +277,10 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        _omDbActors = new List<string>();
+        _omDbDirectors = new List<string>();
+        _omDbGenre = new List<string>();
+        
         var authState = await authenticationStateTask;
         _username = authState.User.Identity.Name;
 

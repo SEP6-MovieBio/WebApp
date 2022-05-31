@@ -15,5 +15,6 @@ namespace MovieBioApp.Data.UserService
         //Task<bool> PostPasswordHashString(string username, string password);
         Task PostCreateUser(UserInfo userInfo);
         Task PostFavouriteMovie(string username, int movieID);
+        Task<double> getNicenessRatio(string username);
     }
 }

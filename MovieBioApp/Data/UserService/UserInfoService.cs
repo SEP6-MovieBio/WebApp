@@ -125,6 +125,22 @@ namespace MovieBioApp.Data.UserService
                 Console.WriteLine("PostFavouriteMovie Not succesful");
             }       
         }
+        
+        public async Task<double> getNicenessRatio(string username)
+        {
+            string path = "https://moviebiodb.azurewebsites.net/User/Niceness?username=" + username;
+            HttpClient client = new HttpClient();
+            double rating = -1;
+            HttpResponseMessage response = await client.GetAsync(path);
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonString = await response.Content.ReadAsStringAsync();
+
+                rating = JsonSerializer.Deserialize<double>(jsonString);
+            }
+
+            return rating;
+        }
     }
 }
 

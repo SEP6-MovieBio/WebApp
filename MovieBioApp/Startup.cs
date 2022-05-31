@@ -17,6 +17,7 @@ using MovieBioApp.Data.OMDbAPI;
 using MovieBioApp.Data.PeopleService;
 using MovieBioApp.Data.UserService;
 using MovieBioApp.Models;
+using UserInfoService = MovieBioApp.Data.UserService.UserInfoService;
 
 namespace MovieBioApp
 {
@@ -41,6 +42,7 @@ namespace MovieBioApp
             services.AddSingleton<IPeopleService, PeopleService>();
             
             services.AddSingleton<IUserInfoService, UserInfoService>();
+
             services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
             
             services.AddAuthorization(options =>

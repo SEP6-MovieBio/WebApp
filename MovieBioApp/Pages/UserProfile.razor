@@ -1,5 +1,4 @@
 ﻿@page "/UserProfile"
-@using MovieBioApp.Controllers
 @using MovieBioApp.Data
 @using System.Text.Json
 @using MovieBioApp.Authentication
@@ -128,7 +127,7 @@
         var authState = await authenticationStateTask;
         var user = authState.User; 
         
-        nicenessRatio= await Service.getNicenessRatio(_username);
+        nicenessRatio= await UserInfoService.getNicenessRatio(_username);
         
         if (user.Identity.IsAuthenticated)
         {

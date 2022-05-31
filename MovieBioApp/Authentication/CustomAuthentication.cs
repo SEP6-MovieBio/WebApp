@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
-using MovieBioApp.Controllers;
 using MovieBioApp.Data;
 using MovieBioApp.Data.UserService;
 using MovieBioApp.Models;
