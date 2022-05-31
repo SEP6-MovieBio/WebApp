@@ -40,7 +40,7 @@ namespace MovieBioApp
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<IOMDbAPIService, OMDbAPIService>();
             services.AddSingleton<IPeopleService, PeopleService>();
-            
+
             services.AddSingleton<IUserInfoService, UserInfoService>();
 
             services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();

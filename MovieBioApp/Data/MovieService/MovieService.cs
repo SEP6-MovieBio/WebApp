@@ -65,6 +65,15 @@ namespace MovieBioApp.Data.MovieService
             return result;
         }
 
+        public async Task<double> GetMovieRatingByActorRating(int movieID)
+        {
+            Task<string> info = client.GetStringAsync(uri + $"ratingByActor?movieid={movieID}");
+            string message = await info;
+            double result = JsonSerializer.Deserialize<double>(message);
+            
+            return result;        
+        }
+
         public async Task PostMovieReview(MovieReview review)
         {
 

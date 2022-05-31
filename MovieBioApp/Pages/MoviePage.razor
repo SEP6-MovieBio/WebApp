@@ -1,12 +1,14 @@
 ﻿@page "/MoviePage/{idToBeSet}"
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
+@using MovieBioApp.Data.PeopleService
 @using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 
 @inject IMovieService MovieService;
 @inject IOMDbAPIService OmDbApiService;
-@inject IUserInfoService UserService
+@inject IUserInfoService UserService;
+@inject IPeopleService PeopleService;
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
@@ -136,6 +138,7 @@ else
         <h3>
             <strong>Reviews</strong>
         </h3>
+        <br/>
         <p>@_noReviewsToShow</p>
 
         <br/>
@@ -150,9 +153,9 @@ else
                     <p>
                         <strong>@review.ReviewUsername</strong>
                     </p>
-                    <p>Description</p>
+                    <p><strong>Description</strong></p>
                     <p>@review.ReviewDescription</p>
-                    <p>Rating</p>
+                    <p><strong>Rating</strong></p>
                     <p>@review.ReviewRating / 10</p>
                 </div>
             }
@@ -199,41 +202,41 @@ else
                             </EditForm>
                            
                         }
-                        else
-                        {
-                            <EditForm Model="@_newReview" OnValidSubmit="SaveReview">
-                                <DataAnnotationsValidator/>
-                                <ValidationSummary/>
-                                <div class="form-group">
-                                    <p>@_errorMessage</p>
-                                    <textarea class="form-control" @bind="_newReview.ReviewDescription" rows="3"></textarea>
-                           
-                           
-                                    <select @bind="_newReview.ReviewRating">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                           
-                                    </select>
-                                    <button class="btn btn-outline-dark" type="submit">Submit</button>
-                                </div>
-                            </EditForm>
-                           
-                        }
+
+                    }                        else
+                    {
+                        <EditForm Model="@_newReview" OnValidSubmit="SaveReview">
+                            <DataAnnotationsValidator/>
+                            <ValidationSummary/>
+                            <div class="form-group">
+                                <p>@_errorMessage</p>
+                                <textarea class="form-control" @bind="_newReview.ReviewDescription" rows="3"></textarea>
+                                                
+                                                
+                                <select @bind="_newReview.ReviewRating">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                                
+                                </select>
+                                <button class="btn btn-outline-dark" type="submit">Submit</button>
+                            </div>
+                        </EditForm>
+                                                
                     }
 
 
                 </div>
             </Authorized>
             <NotAuthorized>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h3>
                         <strong>Log in or signup to write your own review!</strong>
                     </h3>
@@ -265,6 +268,7 @@ else
     float _reviewRating;
     string _errorMessage = "";
     string _noReviewsToShow = "";
+    double _movieRatingByActor;
 
     MovieReview _savedReview;
     MovieReview _newReview;
@@ -285,6 +289,8 @@ else
         _username = authState.User.Identity.Name;
 
         _movie = await MovieService.GetMovieById(Int32.Parse(idToBeSet));
+        _movieRatingByActor = await (MovieService.GetMovieRatingByActorRating(_movie.MovieId));
+        _movie.RatingBasedOnActors = float.Parse(_movieRatingByActor.ToString());
         
         if (authState.User.Identity.IsAuthenticated)
         {

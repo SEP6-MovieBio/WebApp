@@ -12,5 +12,7 @@ namespace MovieBioApp.Data.MovieService
         Task PostMovieReview(MovieReview review);
         Task PatchMovieReview(string username, string reviewTextfield, float reviewRating, int movieID);
         Task<List<Movie>> SearchTop10Movies(string searchText);
+        Task<double> GetMovieRatingByActorRating(int movieID);
+
     }
 }
