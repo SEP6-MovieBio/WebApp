@@ -1,6 +1,58 @@
 ﻿@page "/SignUp"
+@using MovieBioApp.Data
+@using MovieBioApp.Data.UserService
+@using System.Security.Cryptography
+@using System.Text
+@using MovieBioApp.Authentication
+@inject IUserInfoService UserInfoService
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+
 <h3>SignUp</h3>
+
+<EditForm Model="_userInfo" OnValidSubmit="SubmitUser">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="form-group">
+        <input type="text" placeholder="Username" @bind-value="_userInfo.Username">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Password" @bind-value="_userInfo.Password">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Phonenumber" @bind-value="_userInfo.PhoneNumber">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="email" @bind-value="_userInfo.Email">
+    </div>
+    <div class="form-group">
+        <input type="text" placeholder="Biography" @bind-value="_userInfo.Biography">
+    </div>
+    <button class="btn btn-outline-dark" type="submit">Submit</button>
+</EditForm>
+
 
 @code {
     
+    private UserInfo _userInfo;
+    
+        
+
+    public  async void SubmitUser()
+    {
+        _userInfo.SecurityLevel = 1;
+        await UserInfoService.PostCreateUser(_userInfo);
+        await ((CustomAuthentication) AuthenticationStateProvider).ValidateLogin(_userInfo.Username, _userInfo.Password);
+
+        NavigationManager.NavigateTo("/UserProfile");
+
+    }
+
+    protected override async Task OnInitializedAsync() {
+        _userInfo = new UserInfo();
+    }
+
+
 }
+

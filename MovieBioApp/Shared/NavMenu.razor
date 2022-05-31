@@ -1,29 +1,48 @@
-﻿@using MovieBioApp.Data.PeopleService
+@using MovieBioApp.Data.PeopleService
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data
 @using MovieBioApp.Models
+@using MovieBioApp.Authentication
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+
 <nav class="navbar navbar-expand-sm navbar-toggleable-sm backGroundColorNavBar border-bottom box-shadow mb-3">
     <div class="container">
-        <a class="navbar-brand" href=""><img class="logoIcon" src="Icons/MovieIcon.png"></a>
+        <a class="navbar-brand" href="">
+            <img class="logoIcon" src="Icons/MovieIcon.png">
+        </a>
         <button class="navbar-toggler" type="button" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-             <ul class="navbar-nav searchBar">
-                 <div class="dropdown">
-                   <div class="btn profileButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     <img class="profileIcon" alt="user" src="Icons/HumanIcon.png">
-                   </div>
-                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                       <a class="dropdown-item" href="UserProfile">My Profile</a>
-                       <a class="dropdown-item" href="FavoriteMovies">My Favorites</a>
-                       @*<div class="dropdown-divider"></div>
-                       <a class="dropdown-item" href="Settings">Settings</a>*@
-                   </div>
-                 </div>
-             </ul>
+            <ul class="navbar-nav searchBar">
+
+                <AuthorizeView Policy="LoggedInUser">
+                    <Authorized>
+                        <div class="dropdown">
+                            <div class="btn profileButton" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="profileIcon" alt="user" src="Icons/HumanIcon.png">
+                            </div>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="UserProfile">My Profile</a>
+                                <a class="dropdown-item" @onclick="ChangePageToFavourite">My Favorites</a>
+                                <a class="dropdown-item" @onclick="PerformLogout">LogOut</a>
+
+                                @*<div class="dropdown-divider"></div>
+                                       <a class="dropdown-item" href="Settings">Settings</a>*@
+                            </div>
+                        </div>
+                    </Authorized>
+                    <NotAuthorized>
+                        <a href="SignUp">SignUp</a>
+                        <a href="Login">Log in</a>
+
+                    </NotAuthorized>
+                </AuthorizeView>
+
+            </ul>
             <ul class="navbar-nav flex-grow-1 searchBar">
+
                 <div class="dropdown">
                     <div class="btn profileButton WhiteText" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Menu<img class="profileIcon menuIcon" alt="user" src="Icons/MenuIcon.png">
@@ -49,11 +68,27 @@
             </ul>
 
         </div>
+
     </div>
+
 </nav>
 
 
 @code {
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationStateTask { get; set; }
+
+    string _username;
+    
+    private async Task ChangePageToFavourite()
+    {
+        var authState = await authenticationStateTask;
+        _username= authState.User.Identity.Name; 
+        NavigationManager.NavigateTo($"/FavoriteMovies/{_username}");
+
+    }
+
+    
     bool collapseNavMenu = true;
     PeopleService peopleService = new PeopleService();
     MovieService movieService = new MovieService();
@@ -86,6 +121,18 @@
 
     }
     
+
+    private void PerformLogout()
+    {
+        try
+        {
+            ((CustomAuthentication)AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
+    }
 
 
 }

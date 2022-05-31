@@ -4,15 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieBioApp.Authentication;
 using MovieBioApp.Data;
 using MovieBioApp.Data.MovieService;
 using MovieBioApp.Data.OMDbAPI;
 using MovieBioApp.Data.PeopleService;
+using MovieBioApp.Data.UserService;
 using MovieBioApp.Models;
 
 namespace MovieBioApp
@@ -36,8 +39,15 @@ namespace MovieBioApp
             services.AddSingleton<IMovieService, MovieService>();
             services.AddSingleton<IOMDbAPIService, OMDbAPIService>();
             services.AddSingleton<IPeopleService, PeopleService>();
-
-
+            
+            services.AddSingleton<IUserInfoService, UserInfoService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthentication>();
+            
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("LoggedInUser", a =>
+                    a.RequireAuthenticatedUser().RequireClaim("SecurityLevel", "1"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
