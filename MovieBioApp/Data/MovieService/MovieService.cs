@@ -13,13 +13,10 @@ namespace MovieBioApp.Data.MovieService
     public class MovieService : IMovieService
     {
         private string uri = "https://moviebiodb.azurewebsites.net/MovieInfo/";
-        //private string uri = "https://localhost:5003/MovieInfo/";
 
         private HttpClient client;
-        //private OMDbAPIService _omDbApiObj;
         public List<Movie> movies { get; set; }
-
-
+        
         public MovieService()
         {
             client = new HttpClient();

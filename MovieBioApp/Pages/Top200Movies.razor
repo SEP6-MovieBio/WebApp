@@ -81,11 +81,11 @@
 
 
 @code {
-    string username = "test";
     List<Movie> top20Movies;
     IOMDbAPIService OmDbApiService = new OMDbAPIService();
     Dictionary<string, OMDbAPIObj> omdbDict;
     MovieService movieInfoService;
+    
     protected override async Task OnInitializedAsync()
     {
         MovieService = new MovieService();

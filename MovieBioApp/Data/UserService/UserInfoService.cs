@@ -11,18 +11,12 @@ namespace MovieBioApp.Data.UserService
 {
     public class UserInfoService : IUserInfoService
     {
-        
-        
         private string userInfoUri = "https://moviebiodb.azurewebsites.net/userinfo/";
         private string userUri = "https://moviebiodb.azurewebsites.net/User/";
         private string userSearchUri = "https://moviebiodb.azurewebsites.net/searchTop10Users";
 
-        //private string uri = "https://localhost:5003/MovieInfo/";
-        //private string userInfoUri = "https://localhost:5003/userinfo/";
-        //private string userUri = "https://localhost:5003/User/";
         
         private HttpClient client;
-        //private OMDbAPIService _omDbApiObj;
 
 
         public UserInfoService()

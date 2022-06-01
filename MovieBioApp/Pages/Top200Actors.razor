@@ -76,16 +76,13 @@ else
 
 
 @code {
-    string username = "test";
     List<Actor> top200Actors;
     List<Actor> top20Actors;
     ITMDBAPI TMDBAPI = new TMDBAPI();
     Dictionary<int, Result> tmdbapiObj;
     IPeopleService peopleService;
-    MovieService _movieService;
     protected override async Task OnInitializedAsync()
     {
-        _movieService = new MovieService();
         top200Actors = new List<Actor>();
         peopleService = new PeopleService();
         tmdbapiObj = new Dictionary<int, Result>();
