@@ -5,13 +5,15 @@
 @using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Data.PeopleService
 @using MovieBioApp.Data.TMDBAPI
+@using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 @using MovieBioApp.Models.ClassesToReadJson
 
 @inject IPeopleService PeopleService;
 @inject IMovieService MovieService;
+@inject NavigationManager UriHelper
 
-@if (biggestList == 0)
+@if (biggestList.Count == 0)
     {
         <p>
             <em>Loading...</em>
@@ -27,30 +29,101 @@ else
 
         </div>
         <div class="row rowStyle">
-            <div class="col-md-4">Actors</div>
-            <div class="col-md-4">Directors</div>
-            <div class="col-md-4">Movies</div>
+            <div class="col-md-3">Actors</div>
+            <div class="col-md-3">Directors</div>
+            <div class="col-md-3">Movies</div>
+            <div class="col-md-3">Users</div>
         </div>
 
-        @for (var i = 0; i < biggestList; i++)
+        @foreach (var i in biggestList)
         {
+            Console.WriteLine(i.ToString());
             <div class="row rowBorder">
-                <div class="col-md-4">
-                    @if (tmdbapiObjActors.ContainsKey(top10Actors[i].id) && i < top10Actors.Count)
+                <div class="col-md-3">
+                    @if (i < top10Actors.Count)
                     {
-                        <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjActors[top10Actors[i].id].results[0].profile_path" alt="No image for this Actor" width="100%"></div>
+                        if (tmdbapiObjActors.ContainsKey(top10Actors[i].id) && tmdbapiObjActors[top10Actors[i].id].results[0].profile_path != null)
+                        {
+                            <div class="card mb-4 box-shadow" @onclick="@(e => actorImageclicked(top10Actors[i].id))"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjActors[top10Actors[i].id].results[0].profile_path" alt="No image for this Actor" width="100%">
+                            <p class="card-text">@tmdbapiObjActors[top10Actors[i].id].results[0].name</p></div>
+                        }
+                        else
+                        {
+                            <img @onclick="@(e => actorImageclicked(top10Actors[i].id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                        }
                     }
                 </div>
-                <div class="col-md-4">
-                    @if (tmdbapiObjDirectors.ContainsKey(top10Directors[i].id) && i < top10Directors.Count)
+                <div class="col-md-3">
+                    @if (i < top10Directors.Count)
                     {
-                        <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path" alt="No image for this Director" width="100%"></div>
+                        if (tmdbapiObjDirectors.ContainsKey(top10Directors[i].id) && tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path != null)
+                        {
+                        <div class="card mb-4 box-shadow" @onclick="@(e => directorImageclicked(top10Directors[i].id))"><img src="https://image.tmdb.org/t/p/original/@tmdbapiObjDirectors[top10Directors[i].id].results[0].profile_path" alt="No image for this Director" width="100%">
+                            <p class="card-text">@tmdbapiObjDirectors[top10Directors[i].id].results[0].name</p></div>
+                        }
+                        else
+                        {
+                        <img @onclick="@(e => directorImageclicked(top10Directors[i].id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                        }
                     }
                 </div>
-                <div class="col-md-4">
-                    @if (omdbDict.ContainsKey(top10Movies[i].MovieTitle + top10Movies[i].Year) && i < top10Movies.Count)
+                <div class="col-md-3">
+                    @if (i < top10Movies.Count)
                     {
-                        <div><img src="@omdbDict[top10Movies[i].MovieTitle + top10Movies[i].Year].image" alt="No image for this Movie" width="100%"></div>
+                        if (omdbDict.ContainsKey(top10Movies[i].MovieTitle + top10Movies[i].Year) && omdbDict[top10Movies[i].MovieTitle + top10Movies[i].Year].image != null)
+                        {
+                        <div class="card mb-4 box-shadow"><img @onclick="@(e => movieImageclicked(top10Movies[i].MovieId))" src="@omdbDict[top10Movies[i].MovieTitle + top10Movies[i].Year].image" alt="No image for this Movie" width="100%">
+                            <p class="card-text">@omdbDict[top10Movies[i].MovieTitle + top10Movies[i].Year].title</p></div>
+                        }
+                        else
+                        {
+                        <img @onclick="@(e => movieImageclicked(top10Movies[i].MovieId))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                        }
+                    }
+                </div>
+                <div class="col-md-3">
+                    @if (i < top10Users.Count)
+                    {
+                        if (!string.IsNullOrEmpty(top10Users[i].Biography))
+                        {
+                        <div class="card mb-4 box-shadow" @onclick="@(e=> userImageclicked(top10Users[i].Username))">
+                            <div>
+                                <div>
+                                    Username:
+                                </div>
+                                <div>
+                                    @top10Users[i].Username
+                                </div>
+                                <br>
+                                <div>
+                                    Biography:
+                                </div>
+                                <div>
+                                    @top10Users[i].Biography
+                                </div>
+                            </div>
+                            </div>
+                            }
+                        else
+                        {
+                        <div class="card mb-4 box-shadow" @onclick="@(e=> userImageclicked(top10Users[i].Username))">
+                            <div>
+                                <div>
+                                    Username:
+                                </div>
+                                <div>
+                                    @top10Users[i].Username
+                                </div>
+                                <br>
+                                <div>
+                                    Biography:
+                                </div>
+                                <div>
+                                    Biography is empty
+                                </div>
+                            </div>
+                        </div>
+                        }
                     }
                 </div>
             </div>
@@ -58,20 +131,26 @@ else
     </div>
 
 @code {
-    int biggestList = 0;
+    List<int> biggestList;
     [Parameter] 
     public string searchField { get; set; }
+    //Users
+    List<UserInfo> top10Users;
+    UserInfoService userInfoService;
     //Directors
     List<Director> top10Directors;
+    List<Director> top10DirectorsOri;
     ITMDBAPI TMDBAPIDirectors = new TMDBAPI();
     Dictionary<int, Result> tmdbapiObjDirectors;
     PeopleService peopleService;
     //Actors
     List<Actor> top10Actors;
+    List<Actor> top10ActorsOri;
     ITMDBAPI TMDBAPIActors = new TMDBAPI();
     Dictionary<int, Result> tmdbapiObjActors;
     //Movies
     List<Movie> top10Movies;
+    List<Movie> top10MoviesOri;
     IOMDbAPIService OmDbApiService = new OMDbAPIService();
     Dictionary<string, OMDbAPIObj> omdbDict;
     MovieService movieService;
@@ -79,65 +158,101 @@ else
     protected override async Task OnInitializedAsync()
     {
         Console.WriteLine(searchField);
+        biggestList = new List<int>();
+    //User
+        top10Users = new List<UserInfo>();
+        userInfoService = new UserInfoService();
+        top10Users = await userInfoService.SearchTop10Users(searchField);
+        
     //Directors
         top10Directors = new List<Director>();
+        top10DirectorsOri = new List<Director>();
         peopleService = new PeopleService();
         tmdbapiObjDirectors = new Dictionary<int, Result>();
-        top10Directors = await peopleService.SearchTop10Directors(searchField);
+        top10DirectorsOri = await peopleService.SearchTop10Directors(searchField);
 
     //Actors
         top10Actors = new List<Actor>();
+        top10ActorsOri = new List<Actor>();
         peopleService = new PeopleService();
         tmdbapiObjActors = new Dictionary<int, Result>();
-        top10Actors = await peopleService.SearchTop10Actors(searchField);
+        top10ActorsOri = await peopleService.SearchTop10Actors(searchField);
 
     //Movies
         top10Movies = new List<Movie>();
+        top10MoviesOri = new List<Movie>();
         movieService = new MovieService();
         omdbDict = new Dictionary<string, OMDbAPIObj>();
-        top10Movies = await movieService.SearchTop10Movies(searchField);
+        top10MoviesOri = await movieService.SearchTop10Movies(searchField);
 
     //Movies
-        foreach (Movie movie in top10Movies)
+        foreach (Movie movie in top10MoviesOri)
         {
             OMDbAPIObj omDbApiObj = await OmDbApiService.GetOMDbAPIMovie(movie.MovieTitle, movie.Year);
             if (omDbApiObj != null)
             {
                 omdbDict.Add(movie.MovieTitle + movie.Year, omDbApiObj);
-
+                top10Movies.Add(movie);
             }
         }
 
     //Actors
-        foreach (Actor actor in top10Actors)
+        foreach (Actor actor in top10ActorsOri)
         {
             Result result = await TMDBAPIActors.GetPersonById(actor.Name);
             if (result.results.Count != 0)
             {
                 tmdbapiObjActors.Add(actor.id, result);
-
+                top10Actors.Add(actor);
             }
         }
 
     //Directors
-        foreach (Director director in top10Directors)
+        foreach (Director director in top10DirectorsOri)
         {
             Result result = await TMDBAPIDirectors.GetPersonById(director.name);
             if (result.results.Count != 0)
             {
                 tmdbapiObjDirectors.Add(director.id, result);
-
-            }        }
+                top10Directors.Add(director);
+            }
+        }
 
         getBiggestList();
         
-        Console.WriteLine("top10Actors" + top10Actors.Count + "top10directors" + top10Directors.Count + "top10Movies" + top10Movies.Count);
+        Console.WriteLine("top10Actors" + top10Actors.Count + "top10directors" + top10Directors.Count + "top10Movies" + top10Movies.Count + "top10Users" + top10Users.Count);
 
     }
 
     private void getBiggestList()
     {
-        biggestList = Math.Max(top10Actors.Count, Math.Max(top10Directors.Count, top10Movies.Count));
+        int number = Math.Max(Math.Max(top10Actors.Count, top10Users.Count), Math.Max(top10Directors.Count, top10Movies.Count));
+
+        for (int i = 0; i < number; i++)
+        {
+            biggestList.Add(i);
+        }
+        
+    }
+    
+    void movieImageclicked(int id)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ id);
+    }
+        
+    void userImageclicked(string username)
+    {
+        UriHelper.NavigateTo("UserPage/"+ username);
+    }
+
+    void directorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("DirectorPage/"+ id);
+    }
+    
+    void actorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("Actors/"+ id);
     }
 
 }

@@ -5,6 +5,7 @@
 @using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Models
 
+@inject NavigationManager UriHelper;
 @inject IMovieService MovieService;
 
     @if (top20Movies == null)
@@ -18,7 +19,7 @@
         <div class="container paddingRemove">
             <div class="row">
                 <div class="col-md-12">
-                    <h3>Top 200 Movies</h3>
+                    <h3>Top 20 Movies</h3>
                 </div>
             </div>
             <div class="row rowStyle">
@@ -59,7 +60,16 @@
                     </div>
                 
                     <div class="col-md-2">
-                        <div><img src="@omdbDict[movie.MovieTitle+movie.Year].image" alt="No image for this movie" width="100%"></div>
+                        <div>
+                            @if (omdbDict[movie.MovieTitle + movie.Year].image != null || omdbDict[movie.MovieTitle + movie.Year].image != "")
+                            {
+                                <img @onclick="@(e => movieImageclicked(movie.MovieId))" src="@omdbDict[movie.MovieTitle + movie.Year].image" alt="No image for this movie" width="100%">
+                            }
+                            else
+                            {
+                                <img @onclick="@(e => movieImageclicked(movie.MovieId))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="No image for this movie" width="100%">
+                            }
+                        </div>
                     </div>
                 </div>
                 
@@ -71,31 +81,26 @@
 
 
 @code {
-    string username = "test";
-    List<Movie> top200Movies;
     List<Movie> top20Movies;
     IOMDbAPIService OmDbApiService = new OMDbAPIService();
     Dictionary<string, OMDbAPIObj> omdbDict;
     MovieService movieInfoService;
-    int amount = 0;
+    
     protected override async Task OnInitializedAsync()
     {
-        top200Movies = new List<Movie>();
         MovieService = new MovieService();
         omdbDict = new Dictionary<string, OMDbAPIObj>();
-        top200Movies = await MovieService.GetTop200Movies();
-        top20Movies = new List<Movie>();
+        top20Movies = await MovieService.GetTop200Movies();
         
-        foreach (Movie movie in top200Movies)
+        foreach (Movie movie in top20Movies)
         {
-            if (amount % 10 == 0)
-            {
-                omdbDict.Add(movie.MovieTitle+movie.Year, await OmDbApiService.GetOMDbAPIMovie(movie.MovieTitle, movie.Year));
-                top20Movies.Add(movie);
-                //HUSK AT LAVE ET VIEW I DATABASEN SÅDAN AT DU IKKE BEHØVER AT KALDE APIEN 200 GANGE
-            }
-            amount++;
+            omdbDict.Add(movie.MovieTitle+movie.Year, await OmDbApiService.GetOMDbAPIMovie(movie.MovieTitle, movie.Year));
         }
         
+    }
+    
+    void movieImageclicked(int id)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ id);
     }
 }

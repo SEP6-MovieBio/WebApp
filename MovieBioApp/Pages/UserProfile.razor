@@ -5,7 +5,6 @@
 @using MovieBioApp.Data.UserService
 @using MovieBioApp.Models
 @inject IUserInfoService UserInfoService;
-@inject NavigationManager NavigationManager
 
 <h3>UserProfile</h3>
 <!DOCTYPE html>
@@ -159,11 +158,8 @@
         
         return await UserInfoService.Postbio(JsonSerializer.Serialize(_userInfo));
     }
-
-    public void changebio()
-    {
-        _userInfo.Biography = _biography;
-    }
+    
+    
 
     public async Task<bool> CancelPassword()
     {

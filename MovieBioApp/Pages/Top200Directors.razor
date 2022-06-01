@@ -1,12 +1,13 @@
 ﻿@page "/Top200Directors"
 @using System.Collections
 @using MovieBioApp.Data
+@using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.PeopleService
 @using MovieBioApp.Data.TMDBAPI
 @using MovieBioApp.Models
 @using MovieBioApp.Models.ClassesToReadJson
 
-@inject IPeopleService People;
+@inject NavigationManager UriHelper;
 @if (top20Directors == null)
     {
         <p>
@@ -18,7 +19,7 @@ else
 <div class="container paddingRemove">
     <div class="row">
         <div class="col-md-12">
-            <h3>Top 200 Directors</h3>
+            <h3>Top 20 Directors</h3>
         </div>
         
     </div>
@@ -46,15 +47,33 @@ else
                 </div>
 
                 <div class="col-md-2">
-                <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[director.id].results[0].known_for[0].poster_path" alt="No image for this movie" width="100%"></div>
+                    <div>
+                        @if (tmdbapiObj[director.id].results[0].known_for[0].poster_path != null)
+                        {
+                            <img @onclick="@(e => movieImageclicked(director))" src="https://image.tmdb.org/t/p/original/@tmdbapiObj[director.id].results[0].known_for[0].poster_path" alt="No image for this Director" width="100%">
+                        }
+                        else
+                        {
+                            <img @onclick="@(e => movieImageclicked(director))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                        }
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div>
+                            @if (tmdbapiObj[director.id].results[0].profile_path != null)
+                            {
+                                <img @onclick="@(e => directorImageclicked(director.id))" src="https://image.tmdb.org/t/p/original/@tmdbapiObj[director.id].results[0].profile_path" alt="No image for this Director" width="100%">
+                            }
+                            else
+                            {
+                                <img @onclick="@(e => directorImageclicked(director.id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="Featured movie has no image" width="100%">
+                            }
+                        </div>
+                    </div>
                 </div>
-
-                <div class="col-md-2">
-                    <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[director.id].results[0].profile_path" alt="No image for this Director" width="100%"></div>
-                </div>
+                }
             </div>
-        }
-</div>
+            
 }
 
 
@@ -64,23 +83,33 @@ else
     ITMDBAPI TMDBAPI = new TMDBAPI();
     Dictionary<int, Result> tmdbapiObj;
     IPeopleService peopleService;
+    MovieService _movieService;
     protected override async Task OnInitializedAsync()
     {
-        top200Directors = new List<Director>();
+        _movieService = new MovieService();
+        top20Directors = new List<Director>();
         peopleService = new PeopleService();
         tmdbapiObj = new Dictionary<int, Result>();
-        top200Directors = await peopleService.GetTop20Directors();
-        top20Directors = new List<Director>();
+        top20Directors = await peopleService.GetTop20Directors();
         
-        foreach (Director director in top200Directors)
+        foreach (Director director in top20Directors)
         {
             {
                 tmdbapiObj.Add(director.id, await TMDBAPI.GetPersonById(director.name));
-                top20Directors.Add(director);
             }
         }
         
 
     }    
+    
+    void directorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("DirectorPage/"+ id);
+    }
+    
+    async Task movieImageclicked(Director director)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ tmdbapiObj[director.id].results[0].known_for[0].id);
+    }
     
 }

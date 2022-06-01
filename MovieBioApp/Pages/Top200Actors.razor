@@ -1,9 +1,13 @@
 ﻿@page "/Top200Actors"
 @using System.Collections
 @using MovieBioApp.Data
+@using MovieBioApp.Data.MovieService
+@using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Data.PeopleService
 @using MovieBioApp.Data.TMDBAPI
+@using MovieBioApp.Models
 @using MovieBioApp.Models.ClassesToReadJson
+@inject NavigationManager UriHelper;
 @if (top20Actors == null)
     {
         <p>
@@ -15,7 +19,7 @@ else
 <div class="container paddingRemove">
     <div class="row">
         <div class="col-md-12">
-            <h3>Top 200 Actors</h3>
+            <h3>Top 20 Actors</h3>
         </div>
     </div>
     <div class="row rowStyle">
@@ -40,11 +44,29 @@ else
                 </div>
 
                 <div class="col-md-2">
-                    <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[actor.id].results[0].known_for[0].poster_path" alt="No image for this movie" width="100%"></div>
+                    <div>
+                        @if (tmdbapiObj[actor.id].results[0].known_for[0].poster_path != null)
+                        {
+                            <img @onclick="@(e => movieImageclicked(actor))" src="https://image.tmdb.org/t/p/original/@tmdbapiObj[actor.id].results[0].known_for[0].poster_path" alt="No image for this movie" width="100%">
+                        }
+                        else
+                        {
+                            <img @onclick="@(e => movieImageclicked(actor))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="No image for this movie" width="100%">
+                        }
+                    </div>
                 </div>
 
                 <div class="col-md-2">
-                    <div><img src="https://image.tmdb.org/t/p/original/@tmdbapiObj[actor.id].results[0].profile_path" alt="No image for this Actor" width="100%"></div>
+                                        <div>
+                                            @if (tmdbapiObj[actor.id].results[0].profile_path != null)
+                                            {
+                                                <img @onclick="@(e => actorImageclicked(actor.id))" src="https://image.tmdb.org/t/p/original/@tmdbapiObj[actor.id].results[0].profile_path" alt="No image for this actor" width="100%">
+                                            }
+                                            else
+                                            {
+                                                <img @onclick="@(e => actorImageclicked(actor.id))" src="https://www.prokerala.com/movies/assets/img/no-poster-available.jpg" alt="No image for this actor" width="100%">
+                                            }
+                                        </div>
                 </div>
             </div>
         }
@@ -54,7 +76,6 @@ else
 
 
 @code {
-    string username = "test";
     List<Actor> top200Actors;
     List<Actor> top20Actors;
     ITMDBAPI TMDBAPI = new TMDBAPI();
@@ -77,7 +98,16 @@ else
         }
         
 
-    }    
+    }
+    void actorImageclicked(int id)
+    {
+        UriHelper.NavigateTo("Actors/"+ id);
+    }
+    
+    async Task movieImageclicked(Actor actor)
+    {
+        UriHelper.NavigateTo("MoviePage/"+ tmdbapiObj[actor.id].results[0].known_for[0].id);
+    }
     
     
 }

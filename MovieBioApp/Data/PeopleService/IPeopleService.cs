@@ -12,5 +12,9 @@ namespace MovieBioApp.Data.PeopleService
 
         Task<List<Director>> SearchTop10Directors(string searchText);
 
+        Task<Director> GetDirectorById(int id);
+        
+        Task<Actor> GetActorById(int id);
+
     }
 }

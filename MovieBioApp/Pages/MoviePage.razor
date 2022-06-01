@@ -1,4 +1,4 @@
-﻿@page "/MoviePage/{idToBeSet}"
+﻿@page "/MoviePage/{id}"
 @using MovieBioApp.Data.MovieService
 @using MovieBioApp.Data.OMDbAPI
 @using MovieBioApp.Data.PeopleService
@@ -258,7 +258,7 @@ else
 
 @code {
     [Parameter]
-    public string? idToBeSet { get; set; }
+    public string id { get; set; }
         
     [CascadingParameter]
     private Task<AuthenticationState> authenticationStateTask { get; set; }
@@ -289,7 +289,7 @@ else
         var authState = await authenticationStateTask;
         _username = authState.User.Identity.Name;
 
-        _movie = await MovieService.GetMovieById(Int32.Parse(idToBeSet));
+        _movie = await MovieService.GetMovieById(Int32.Parse(id));
         _movieRatingByActor = await (MovieService.GetMovieRatingByActorRating(_movie.MovieId));
         _movie.RatingBasedOnActors = float.Parse(_movieRatingByActor.ToString());
         
