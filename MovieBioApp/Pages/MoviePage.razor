@@ -21,6 +21,7 @@
     <link href="css/site.css" rel="stylesheet"/>
     <link href="MovieBioApp.styles.css" rel="stylesheet"/>
     <link href="css/starSystem.css" rel="stylesheet">
+    <link href="css/heart.css">
 </head>
 <body>
 <div class="container">
@@ -53,7 +54,7 @@ else
         <div class="col-sm-1">
             <AuthorizeView>
                 <Authorized>
-                    <button @onclick="AddToFavourites" class="fas fa-heart" style="font-size:60px;color:red"></button>
+                    <button @onclick="AddToFavourites"><img src="Icons/heart.jpg"></button>
                 </Authorized>
                 <NotAuthorized>
                     <p>Log in to add this movie to your list!</p>
